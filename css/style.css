@@ -1,0 +1,106 @@
+* {
+    margin:  0;
+    padding: 0;
+    color: #F0F0F0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+*:hover {
+    cursor:default;
+}
+
+body {
+    width:  100%;
+    height: 100%;
+    background: rgba(40, 40, 40, 1.0);
+    overflow: auto;
+    opacity: 1;
+
+}
+
+@keyframes fade {
+  0%   { background-color: rgba(32, 32, 32, 0); }
+  100% { background-color: rgba(157, 133, 96, 255) }
+}
+
+h1 {
+    font-style: normal;
+}
+
+
+
+h2 {
+    color: #323232;
+}
+
+header {
+    background: rgba(50, 50, 50, 1.0);
+    padding: 1.6em;
+    margin-top: 0.4%;
+    
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+}
+
+#menu {
+    list-style: none;
+    float: right;
+}
+
+#menu li {
+    padding-left: 2em;
+    padding-right: 2em;
+    float: left;
+}
+
+#heroCanvas {
+    width: 100%;
+    height: 30%;
+}
+
+#pageContent {
+    width: 100%;
+    background-color: #303030;
+    margin-top: 0.4%;
+    margin-bottom: 0.4%;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+video {
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    height: 20%
+}
+
+@keyframes emphasize {
+  0%   { background-color: #202020; color: #FFFFFF;}
+  100% { background-color: #282828; color: #FFFFFF;}
+}
+
+@keyframes de-emphasize {
+  0%   { background-color: #282828; color: #FFFFFF;}
+  100% { background-color: #202020; color: #FFFFFF;}
+}
+
+.contentbox {
+    animation: de-emphasize 0.5s linear;
+    width: 95%;
+    height: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #202020;
+}
+
+.contentbox:hover {
+    animation: emphasize 0.5s linear;
+    background-color: #282828;
+    color: #FFFFFF;
+}
