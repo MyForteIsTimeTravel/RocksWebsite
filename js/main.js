@@ -121,7 +121,6 @@ for (var i = 0; i < starCount; i++) {
     
     // set far back
     obj.position.z     = -330
-    
     // management
     stars[i] = obj
     var ting = Math.random()
@@ -149,12 +148,24 @@ for (var i = 0; i < starCount; i++) {
 var paused = false
 var tick = 0
 
+var radius = 10
+var spin = 40
+
 function update () {
     if (!paused) {
         updateTick()
         updateInput()
+
         
         // animate objects
+        
+        camera.position.x = (Math.sin((tick + (mouseX*0.01))/spin) * radius)
+        camera.position.z = (Math.cos((tick + (mouseY*0.01))/spin) * radius)
+       //camera.position.x += ( mouseX - camera.position.x ) * 0.001;
+       //camera.position.y += ( - mouseY - camera.position.y ) * .05;
+        
+        camera.lookAt(scene.position)
+        
         for (var i = 0; i < starCount; i++) {
             if (stars[i].position.y > -200) {
                stars[i].position.y -= starSpeeds[i];
@@ -164,6 +175,9 @@ function update () {
             }
         }
         
+        if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
+        else { mesh.position.x -= Math.random() * 0.001 }
+        mesh.rotation.z += 0.01;
         mesh.rotation.y += 0.01;
 
         // Draw the scene
@@ -178,7 +192,7 @@ function update () {
 function updateTick () {
     switch (tick == Number.MAX_SAFE_INTEGER) {
         case true:  tick = 0; break
-        case false: tick++;   break
+        case false: tick += 0.01;   break
     }
 }
 

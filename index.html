@@ -8,7 +8,8 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-
+        <!-- Vanilla-y JavaScript -->
+        <script src="js/button.js"></script>
         
         <!-- HTML -->
         <header>
@@ -36,15 +37,32 @@
 
                 <img id="example" src="assets/placeholder.jpg" alt="shpace, the final frontier">
                 
-                <h3> Sign up for the beta today! </h3>
+                <div id="showcase">
+                
+                    <video class="spriteShowcase" width="400" height="320" autoplay loop muted>
+                        <source src="assets/sprite1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video class="spriteShowcase" width="400" height="320" autoplay loop muted>
+                        <source src="assets/sprite2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video class="spriteShowcase" width="400" height="320" autoplay loop muted>
+                        <source src="assets/sprite3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <h3 id="sign-up">Sign up for the beta today!</h3>
 
                 <form id="sign-up">
-                    Name:<br>
+                    <p>Name:</p>
                     <input type="text" name="name"><br>
-                    Email:<br>
+                    <p>Email:</p>
                     <input type="text" name="email">
+                    <p></p>
+                    <button id="submit" type="submit">submit</button>     
                 </form>
-                <button>submit</button>
             </div>
         </div>
         

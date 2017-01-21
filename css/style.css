@@ -106,7 +106,7 @@ video {
 }
 
 .contentbox {
-    animation: de-emphasize 0.5s linear;
+    animation: de-emphasize 0.2s linear;
     width: 95%;
     height: 100%;
     margin-right: auto;
@@ -138,6 +138,35 @@ video {
     margin-right: auto;
     margin-left: auto;
 }
+
+#showcase {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    align-content: center;
+}
+
+.spriteShowcase {
+    animation: spriteDemphasize 0.2s linear;
+    margin: 1em auto;
+    width: 40%;
+}
+
+.spriteShowcase:hover {
+    animation: spriteEmphasize 0.2s linear;
+    width: 50%;
+}
+
+@keyframes spriteEmphasize {
+  0%   { width: 40%; }
+  100% { width: 50%; }
+}
+
+@keyframes spriteDemphasize {
+  0%   { width: 50%; }
+  100% { width: 40%%; }
+}
+
 
 #sign-up {
     padding: 1em;
