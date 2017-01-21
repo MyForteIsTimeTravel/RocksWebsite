@@ -1,6 +1,31 @@
-window.onload = heroAnimation;
+var initialise = function () {
+    loadTextResource('js/shader.vert', function(verror, vsource) {
+        if (verror) {
+            alert ('vertex shader loading error')
+            console.error(verror)
+        }
+        
+        else {
+            loadTextResource('js/shader.frag', function (ferror, fsource) {
+                if (ferror) {
+                    alert ('fragment shader loading error')
+                    console.error(ferror)
+                }
+                
+                else {
+                    run(vsource, fsource)
+                }
+            })
+        }
+    })
+}
 
-function heroAnimation () {
+window.onload = initialise();
+
+/* 
+    192.168.0.22
+*/
+var run = function (vertexShaderSource, fragmentShaderSource) {
     var canvas = document.getElementById("heroCanvas")
 
     var gl = canvas.getContext('webgl')
@@ -12,58 +37,19 @@ function heroAnimation () {
     gl.cullFace(gl.BACK)
 
     var vertexShader = gl.createShader(gl.VERTEX_SHADER)
-    gl.shaderSource(vertexShader, [
-        'attribute vec3 vertPos;',
-        'attribute vec3 vertCol;',
-        'attribute vec2 vertTC;',
-        'varying vec3 fragCol;',
-        'varying vec2 fragTC;',
-        'uniform mat4 model;',
-        'uniform mat4 view;',
-        'uniform mat4 projection;',
-        'void main (void) {',
-            'fragCol = vertCol;',
-            'fragTC = vertTC;',
-            'gl_Position = projection * view * model * vec4(vertPos, 1.0);',
-        '}'
-    ].join('\n'))
-    gl.compileShader(vertexShader)
-    if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
-        console.error('ERROR compiling vertex shader!', gl.getShaderInfoLog(vertexShader));
-    }
-
+    gl.shaderSource(vertexShader, vertexShaderSource)
+    
     var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER)
-    gl.shaderSource(fragmentShader, [
-        'precision highp float;',
-        'varying vec3 fragCol;',
-        'varying vec2 fragTC;',
-        'uniform sampler2D sampler;',
-        'void main (void) {',
-            //'gl_FragColor = vec4(fragCol, 1.0);',
-            'gl_FragColor = texture2D(sampler, fragTC);',
-        '}'
-    ].join('\n'))
+    gl.shaderSource(fragmentShader, fragmentShaderSource)
+    
+    gl.compileShader(vertexShader)
+    if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) { console.error('ERROR compiling vertex shader!', gl.getShaderInfoLog(vertexShader)); }
     gl.compileShader(fragmentShader)
-        if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-            console.error('ERROR compiling fragment shader!', gl.getShaderInfoLog(fragmentShader));
-        }
+    if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) { console.error('ERROR compiling fragment shader!', gl.getShaderInfoLog(fragmentShader));}
 
     var Shader = gl.createProgram()
     gl.attachShader(Shader, vertexShader)
     gl.attachShader(Shader, fragmentShader)
-    
-    gl.compileShader(vertexShader);
-	if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
-		console.error('ERROR compiling vertex shader!', gl.getShaderInfoLog(vertexShader));
-		return;
-	}
-
-	gl.compileShader(fragmentShader);
-	if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-		console.error('ERROR compiling fragment shader!', gl.getShaderInfoLog(fragmentShader));
-		return;
-	}
-
 
     gl.linkProgram(Shader)
 
@@ -231,7 +217,7 @@ function heroAnimation () {
 
         mat4.rotate(zRot,
             identity, // original
-            angle, // angle
+            0, // angle
             [1, 0, 0]   // gain
         );
 

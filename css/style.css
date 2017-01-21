@@ -111,8 +111,8 @@ video {
     height: 100%;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 0.2em;
-    margin-bottom: 1em;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
     padding: 0em 1em;
     background-color: #202020;
 }
@@ -131,6 +131,12 @@ video {
     padding: 2em;
     width: 0;
     height: 0;
+}
+
+#description {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #sign-up {
