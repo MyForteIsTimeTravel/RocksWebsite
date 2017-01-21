@@ -36,8 +36,11 @@ function heroAnimation () {
     gl.shaderSource(fragmentShader, [
         'precision highp float;',
         'varying vec3 fragCol;',
+        'varying vec2 fragTC;',
+        'uniform sampler2D sampler;',
         'void main (void) {',
-            'gl_FragColor = vec4(fragCol, 1.0);',
+            //'gl_FragColor = vec4(fragCol, 1.0);',
+            'gl_FragColor = texture2D(sampler, fragTC);',
         '}'
     ].join('\n'))
     gl.compileShader(fragmentShader)
@@ -48,6 +51,20 @@ function heroAnimation () {
     var Shader = gl.createProgram()
     gl.attachShader(Shader, vertexShader)
     gl.attachShader(Shader, fragmentShader)
+    
+    gl.compileShader(vertexShader);
+	if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
+		console.error('ERROR compiling vertex shader!', gl.getShaderInfoLog(vertexShader));
+		return;
+	}
+
+	gl.compileShader(fragmentShader);
+	if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
+		console.error('ERROR compiling fragment shader!', gl.getShaderInfoLog(fragmentShader));
+		return;
+	}
+
+
     gl.linkProgram(Shader)
 
     var triVertices = new Float32Array ([
@@ -57,41 +74,43 @@ function heroAnimation () {
     ])
 
     var boxVertices = new Float32Array ([
-            // Top
-            -1.0, 1.0, -1.0,   0.42, 0.42, 0.42,
-            -1.0, 1.0, 1.0,    0.42, 0.42, 0.42,
-            1.0, 1.0, 1.0,     0.42, 0.42, 0.42,
-            1.0, 1.0, -1.0,    0.42, 0.42, 0.42,
+        
+        
+        		// Top
+            -1.0, 1.0, -1.0, 0.42, 0.42, 0.42,  0, 0,
+            -1.0, 1.0, 1.0,  0.42, 0.42, 0.42,  0, 1,
+            1.0, 1.0, 1.0,   0.42, 0.42, 0.42,  1, 1,
+            1.0, 1.0, -1.0,  0.42, 0.42, 0.42,  1, 0,
 
             // Left
-            -1.0, 1.0, 1.0,    0.32, 0.32, 0.32,
-            -1.0, -1.0, 1.0,   0.32, 0.32, 0.32,
-            -1.0, -1.0, -1.0,  0.32, 0.32, 0.32,
-            -1.0, 1.0, -1.0,   0.32, 0.32, 0.32,
+            -1.0, 1.0, 1.0,   0.32, 0.32, 0.32,  0, 0,
+            -1.0, -1.0, 1.0,  0.32, 0.32, 0.32,  1, 0,
+            -1.0, -1.0, -1.0, 0.32, 0.32, 0.32, 1, 1,
+            -1.0, 1.0, -1.0,   0.32, 0.32, 0.32,0, 1,
 
             // Right
-            1.0, 1.0, 1.0,     0.36, 0.36, 0.36,
-            1.0, -1.0, 1.0,    0.36, 0.36, 0.36,
-            1.0, -1.0, -1.0,   0.36, 0.36, 0.36,
-            1.0, 1.0, -1.0,    0.36, 0.36, 0.36,
+            1.0, 1.0, 1.0,   0.36, 0.36, 0.36, 1, 1,
+            1.0, -1.0, 1.0,  0.36, 0.36, 0.36, 0, 1,
+            1.0, -1.0, -1.0, 0.36, 0.36, 0.36, 0, 0,
+            1.0, 1.0, -1.0,  0.36, 0.36, 0.36, 1, 0,
 
             // Front
-            1.0, 1.0, 1.0,     0.38, 0.38, 0.38,
-            1.0, -1.0, 1.0,    0.38, 0.38, 0.38,
-            -1.0, -1.0, 1.0,   0.38, 0.38, 0.38,
-            -1.0, 1.0, 1.0,    0.38, 0.38, 0.38,
+            1.0, 1.0, 1.0,   0.38, 0.38, 0.38,  1, 1,
+            1.0, -1.0, 1.0,   0.38, 0.38, 0.38,  1, 0,
+            -1.0, -1.0, 1.0,  0.38, 0.38, 0.38,   0, 0,
+            -1.0, 1.0, 1.0,    0.38, 0.38, 0.38, 0, 1,
 
             // Back
-            1.0, 1.0, -1.0,    0.40, 0.40, 0.40, 
-            1.0, -1.0, -1.0,   0.40, 0.40, 0.40, 
-            -1.0, -1.0, -1.0,  0.40, 0.40, 0.40, 
-            -1.0, 1.0, -1.0,   0.40, 0.40, 0.40, 
+            1.0, 1.0, -1.0,   0.40, 0.40, 0.40,  0, 0,
+            1.0, -1.0, -1.0,   0.40, 0.40, 0.40,  0, 1,
+            -1.0, -1.0, -1.0,   0.40, 0.40, 0.40,  1, 1,
+            -1.0, 1.0, -1.0,    0.40, 0.40, 0.40, 1, 0,
 
             // Bottom
-            -1.0, -1.0, -1.0,  0.44, 0.44, 0.44,
-            -1.0, -1.0, 1.0,   0.44, 0.44, 0.44,
-            1.0, -1.0, 1.0,    0.44, 0.44, 0.44,
-            1.0, -1.0, -1.0,   0.44, 0.44, 0.44
+            -1.0, -1.0, -1.0,  0.44, 0.44, 0.44, 1, 1,
+            -1.0, -1.0, 1.0,   0.44, 0.44, 0.44, 1, 0,
+            1.0, -1.0, 1.0,    0.44, 0.44, 0.44, 0, 0,
+            1.0, -1.0, -1.0,   0.44, 0.44, 0.44, 0, 1
     ])
 
     var boxIndices = new Uint16Array ([
@@ -131,13 +150,30 @@ function heroAnimation () {
     // upload static shader data
     var posAttribLoc = gl.getAttribLocation(Shader, 'vertPos')
     var colAttribLoc = gl.getAttribLocation(Shader, 'vertCol')
+    var tcAttribLoc  = gl.getAttribLocation(Shader, 'vertTC')
 
-    gl.vertexAttribPointer(posAttribLoc, 3, gl.FLOAT, gl.FALSE, 6 * Float32Array.BYTES_PER_ELEMENT, 0)
-    gl.vertexAttribPointer(colAttribLoc, 3, gl.FLOAT, gl.FALSE, 6 * Float32Array.BYTES_PER_ELEMENT, 3 * Float32Array.BYTES_PER_ELEMENT)
-
+    gl.vertexAttribPointer(posAttribLoc, 3, gl.FLOAT, gl.FALSE, 8 * Float32Array.BYTES_PER_ELEMENT, 0)
+    gl.vertexAttribPointer(colAttribLoc, 3, gl.FLOAT, gl.FALSE, 8 * Float32Array.BYTES_PER_ELEMENT, 3 * Float32Array.BYTES_PER_ELEMENT)
+    gl.vertexAttribPointer(tcAttribLoc,  2, gl.FLOAT, gl.FALSE, 8 * Float32Array.BYTES_PER_ELEMENT, 6 * Float32Array.BYTES_PER_ELEMENT)
+    
     gl.enableVertexAttribArray(posAttribLoc);
     gl.enableVertexAttribArray(colAttribLoc);
-
+    gl.enableVertexAttribArray(tcAttribLoc);
+    
+    // TEXTURE LOADING
+    var texture = gl.createTexture()
+    gl.bindTexture(gl.TEXTURE_2D, texture)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texImage2D (
+        gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,
+        gl.UNSIGNED_BYTE,
+        document.getElementById('example')
+    )
+    gl.bindTexture(gl.TEXTURE_2D, null)
+    
     gl.useProgram(Shader)
 
     // view transform
@@ -207,6 +243,10 @@ function heroAnimation () {
         // pass uniforms to GPU
         gl.uniformMatrix4fv(modelLoc, gl.FALSE, model)
 
+        // bind texture
+        gl.bindTexture(gl.TEXTURE_2D, texture)
+        gl.activeTexture(gl.TEXTURE0)
+        
         // render
         gl.drawElements(gl.TRIANGLES, boxIndices.length, gl.UNSIGNED_SHORT, 0)
        // gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 3)
