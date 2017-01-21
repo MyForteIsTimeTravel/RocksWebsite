@@ -1,245 +1,186 @@
-var initialise = function () {
-    loadTextResource('js/shader.vert', function(verror, vsource) {
-        if (verror) {
-            alert ('vertex shader loading error')
-            console.error(verror)
-        }
-        
-        else {
-            loadTextResource('js/shader.frag', function (ferror, fsource) {
-                if (ferror) {
-                    alert ('fragment shader loading error')
-                    console.error(ferror)
-                }
-                
-                else {
-                    run(vsource, fsource)
-                }
-            })
-        }
-    })
-}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *  main.js
+ *
+ *  An attempt at a 3D game engine in JavaScript
+ *  using WebGL and Three.js
+ *
+ *  Ryan Needham
+ * * * * * * * * * * * * * * * * * * * * * * * * * * */
+const container = document.querySelector('#canvasContainer')
+var   width     = window.innerWidth
+var   height    = window.innerHeight * 0.60
 
-window.onload = initialise();
-
-/* 
-    192.168.0.22
-*/
-var run = function (vertexShaderSource, fragmentShaderSource) {
-    var canvas = document.getElementById("heroCanvas")
-
-    var gl = canvas.getContext('webgl')
-    gl.clearColor(0.24, 0.24, 0.24, 1.0)
-    gl.clear(gl.COLOR_BUFFER_BIT)
-    gl.enable(gl.DEPTH_TEST)
-    gl.enable(gl.CULL_FACE)
-    gl.frontFace(gl.CCW)
-    gl.cullFace(gl.BACK)
-
-    var vertexShader = gl.createShader(gl.VERTEX_SHADER)
-    gl.shaderSource(vertexShader, vertexShaderSource)
+// handle window resizing
+window.addEventListener('resize', resizeCallback, false);
+function resizeCallback () {
+    width = window.innerWidth
+    height    = window.innerHeight * 0.60
     
-    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER)
-    gl.shaderSource(fragmentShader, fragmentShaderSource)
+    camera.aspect = width/height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
     
-    gl.compileShader(vertexShader)
-    if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) { console.error('ERROR compiling vertex shader!', gl.getShaderInfoLog(vertexShader)); }
-    gl.compileShader(fragmentShader)
-    if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) { console.error('ERROR compiling fragment shader!', gl.getShaderInfoLog(fragmentShader));}
+    /*
+    for (var i = 0; i < starCount; i++) {
+        // generate horizontal pos
+        stars[i].position.x     = Math.random () * 360
+        var ting = Math.random()
+        if      (ting < 0.5)  { ; }
+        else if (ting >= 0.5) { stars[i].position.x -= (stars[i].position.x*2) }
 
-    var Shader = gl.createProgram()
-    gl.attachShader(Shader, vertexShader)
-    gl.attachShader(Shader, fragmentShader)
-
-    gl.linkProgram(Shader)
-
-    var triVertices = new Float32Array ([
-        -0.5, -0.5, 0.0,
-        0.5, -0.5, 0.0,
-        0.0, 0.5, 0.0
-    ])
-
-    var boxVertices = new Float32Array ([
-        
-        
-        		// Top
-            -1.0, 1.0, -1.0, 0.42, 0.42, 0.42,  0, 0,
-            -1.0, 1.0, 1.0,  0.42, 0.42, 0.42,  0, 1,
-            1.0, 1.0, 1.0,   0.42, 0.42, 0.42,  1, 1,
-            1.0, 1.0, -1.0,  0.42, 0.42, 0.42,  1, 0,
-
-            // Left
-            -1.0, 1.0, 1.0,   0.32, 0.32, 0.32,  0, 0,
-            -1.0, -1.0, 1.0,  0.32, 0.32, 0.32,  1, 0,
-            -1.0, -1.0, -1.0, 0.32, 0.32, 0.32, 1, 1,
-            -1.0, 1.0, -1.0,   0.32, 0.32, 0.32,0, 1,
-
-            // Right
-            1.0, 1.0, 1.0,   0.36, 0.36, 0.36, 1, 1,
-            1.0, -1.0, 1.0,  0.36, 0.36, 0.36, 0, 1,
-            1.0, -1.0, -1.0, 0.36, 0.36, 0.36, 0, 0,
-            1.0, 1.0, -1.0,  0.36, 0.36, 0.36, 1, 0,
-
-            // Front
-            1.0, 1.0, 1.0,   0.38, 0.38, 0.38,  1, 1,
-            1.0, -1.0, 1.0,   0.38, 0.38, 0.38,  1, 0,
-            -1.0, -1.0, 1.0,  0.38, 0.38, 0.38,   0, 0,
-            -1.0, 1.0, 1.0,    0.38, 0.38, 0.38, 0, 1,
-
-            // Back
-            1.0, 1.0, -1.0,   0.40, 0.40, 0.40,  0, 0,
-            1.0, -1.0, -1.0,   0.40, 0.40, 0.40,  0, 1,
-            -1.0, -1.0, -1.0,   0.40, 0.40, 0.40,  1, 1,
-            -1.0, 1.0, -1.0,    0.40, 0.40, 0.40, 1, 0,
-
-            // Bottom
-            -1.0, -1.0, -1.0,  0.44, 0.44, 0.44, 1, 1,
-            -1.0, -1.0, 1.0,   0.44, 0.44, 0.44, 1, 0,
-            1.0, -1.0, 1.0,    0.44, 0.44, 0.44, 0, 0,
-            1.0, -1.0, -1.0,   0.44, 0.44, 0.44, 0, 1
-    ])
-
-    var boxIndices = new Uint16Array ([
-        // top
-        0, 1, 2,
-        0, 2, 3,
-
-        // Left
-        5, 4, 6,
-        6, 4, 7,
-
-        // Right
-        8, 9, 10,
-        8, 10, 11,
-
-        // Front
-        13, 12, 14,
-        15, 14, 12,
-
-        // Back
-        16, 17, 18,
-        16, 18, 19,
-
-        // Bottom
-        21, 20, 22,
-        22, 20, 23
-    ])
-
-    var VBO = gl.createBuffer()
-    gl.bindBuffer(gl.ARRAY_BUFFER, VBO)
-    gl.bufferData(gl.ARRAY_BUFFER, boxVertices, gl.STATIC_DRAW)
-
-    var EBO = gl.createBuffer()
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, EBO)
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, boxIndices, gl.STATIC_DRAW)
-
-    // upload static shader data
-    var posAttribLoc = gl.getAttribLocation(Shader, 'vertPos')
-    var colAttribLoc = gl.getAttribLocation(Shader, 'vertCol')
-    var tcAttribLoc  = gl.getAttribLocation(Shader, 'vertTC')
-
-    gl.vertexAttribPointer(posAttribLoc, 3, gl.FLOAT, gl.FALSE, 8 * Float32Array.BYTES_PER_ELEMENT, 0)
-    gl.vertexAttribPointer(colAttribLoc, 3, gl.FLOAT, gl.FALSE, 8 * Float32Array.BYTES_PER_ELEMENT, 3 * Float32Array.BYTES_PER_ELEMENT)
-    gl.vertexAttribPointer(tcAttribLoc,  2, gl.FLOAT, gl.FALSE, 8 * Float32Array.BYTES_PER_ELEMENT, 6 * Float32Array.BYTES_PER_ELEMENT)
-    
-    gl.enableVertexAttribArray(posAttribLoc);
-    gl.enableVertexAttribArray(colAttribLoc);
-    gl.enableVertexAttribArray(tcAttribLoc);
-    
-    // TEXTURE LOADING
-    var texture = gl.createTexture()
-    gl.bindTexture(gl.TEXTURE_2D, texture)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texImage2D (
-        gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,
-        gl.UNSIGNED_BYTE,
-        document.getElementById('example')
-    )
-    gl.bindTexture(gl.TEXTURE_2D, null)
-    
-    gl.useProgram(Shader)
-
-    // view transform
-    var view  = new Float32Array(16)
-    var viewLoc = gl.getUniformLocation(Shader, 'view')
-    mat4.lookAt(view, 
-        [0, 0, -5], // position 
-        [0, 0, 0],  // forward
-        [0, 1, 0]  // up
-    );
-
-    // projection transform
-    var projection = new Float32Array(16)
-    var projectionLoc = gl.getUniformLocation(Shader, 'projection')
-    mat4.perspective(projection,
-        glMatrix.toRadian(60), // fov
-        canvas.width / canvas.height, // aspect
-        0.01, // near
-        1000 // far
-    );
-
-
-    gl.uniformMatrix4fv(viewLoc, gl.FALSE, view)
-    gl.uniformMatrix4fv(projectionLoc, gl.FALSE, projection)
-
-    // LOOP
-    var identity = new Float32Array(16)
-    var angle = 0;
-
-    mat4.identity(identity)
-    
-    //window.setTimeout(update,8000);
-    function update () {
-        // clear
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
-
-        // poll
-        pollGamepads();
-
-        // bind shader
-        gl.useProgram(Shader)
-
-        // model transform
-        angle = performance.now() / 1000 / 6 * 2 * Math.PI;
-        var model = new Float32Array(16)
-        var xRot = new Float32Array(16)
-        var zRot = new Float32Array(16)
-        var scale = new Float32Array(16)
-        var modelLoc = gl.getUniformLocation(Shader, 'model')
-        mat4.rotate(xRot,
-            identity, // original
-            angle, // angle
-            [0, 1, 0]   // gain
-        );
-
-        mat4.rotate(zRot,
-            identity, // original
-            0, // angle
-            [1, 0, 0]   // gain
-        );
-
-        mat4.scale(scale, identity, [0.75, 0.75, 0.75]);
-
-        mat4.mul(model, xRot, zRot);
-        mat4.mul(model, model, scale);
-
-        // pass uniforms to GPU
-        gl.uniformMatrix4fv(modelLoc, gl.FALSE, model)
-
-        // bind texture
-        gl.bindTexture(gl.TEXTURE_2D, texture)
-        gl.activeTexture(gl.TEXTURE0)
-        
-        // render
-        gl.drawElements(gl.TRIANGLES, boxIndices.length, gl.UNSIGNED_SHORT, 0)
-       // gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 3)
-
-        // see you again soon
-        requestAnimationFrame(update)
+        //generate vertical pos
+        stars[i].position.y     = Math.random () * 370
     }
-
-    requestAnimationFrame(update);   
+    */
 }
+
+/* * * * * * * * * * * * * *
+ * Setup WebGL Rendering
+ * * * * * * * * * * * * * */
+const VIEW_ANGLE = 45
+const ASPECT     = width / height
+const NEAR       = 0.1
+const FAR        = 10000
+
+const renderer = new THREE.WebGLRenderer({antialias: true})
+const camera   = new THREE.PerspectiveCamera(
+    VIEW_ANGLE,
+    ASPECT,
+    NEAR,
+    FAR
+)
+
+const scene      = new THREE.Scene()
+scene.background = new THREE.Color(0x202020)
+scene.add(camera)
+
+camera.position.z = 5
+
+renderer.setSize(width, height)
+renderer.shadowMap.enabled = true
+renderer.shadowMap.type    = THREE.PCFSoftShadowMap
+
+// Attach canvas renderer
+container.appendChild(renderer.domElement)
+
+/* * * * * * * * * * * * * *
+ * Lighting
+ * * * * * * * * * * * * * */
+const pointLight = new THREE.PointLight(0xFFFFFF)
+pointLight.position.x = 0
+pointLight.position.y = 0
+pointLight.position.z = 600
+pointLight.rotation   = 20 * (Math.PI / 180)
+pointLight.castShadow = true
+scene.add(pointLight)
+
+/* * * * * * * * * * * * * * * *
+ * World Objects
+ * * * * * * * * * * * * * * * */
+var loader = new THREE.JSONLoader();
+var mesh
+
+loader.load( 'assets/textured.json', function ( geometry ) {
+    var material = new THREE.MeshLambertMaterial({color:0xc19170});
+    
+    mesh = new THREE.Mesh( geometry, material );
+
+    mesh.position.x = 0;
+    mesh.position.y = 0;
+    mesh.position.z = 0;
+    
+    mesh.receiveShadow = true
+    mesh.castShadow = true
+        
+    scene.add( mesh );
+
+}); 
+
+var starCount = 160
+var stars = new Array()
+var starSpeeds = new Array()
+
+for (var i = 0; i < starCount; i++) {
+    const obj = new THREE.Mesh(
+        new THREE.CubeGeometry(1, 1, 1),                 // Vertex Shader
+        new THREE.MeshBasicMaterial({color: 0xDDDDDD})    // Fragment Shader
+    );
+
+    obj.castShadow     = true
+    obj.receiveShadow  = true
+    
+    
+    // generate horizontal pos
+    obj.position.x     = Math.random () * 360
+    var ting = Math.random()
+    if      (ting < 0.5)  { ; }
+    else if (ting >= 0.5) { obj.position.x -= (obj.position.x*2) }
+    
+    //generate vertical pos
+    obj.position.y     = Math.random () * 270
+    
+    // set far back
+    obj.position.z     = -330
+    
+    // management
+    stars[i] = obj
+    var ting = Math.random()
+    if (ting < 0.16) {
+        obj.material.color.setHex( 0xFFFFFF )
+        starSpeeds[i] = 1.0
+    }
+    else if (ting > 0.16 && ting < 0.66) {
+        obj.material.color.setHex( 0xAAAAAA );
+        starSpeeds[i] = 0.4
+    }
+    else if (ting > 0.66) {
+        obj.material.color.setHex( 0x444444 )
+        starSpeeds[i] = 0.2
+    }
+    console.log(starSpeeds[i])
+    scene.add(obj)
+}
+
+
+
+/* * * * * * * * * * * * * * * *
+ * ON UPDATE
+ * * * * * * * * * * * * * * * */
+var paused = false
+var tick = 0
+
+function update () {
+    if (!paused) {
+        updateTick()
+        updateInput()
+        
+        // animate objects
+        for (var i = 0; i < starCount; i++) {
+            if (stars[i].position.y > -200) {
+               stars[i].position.y -= starSpeeds[i];
+            }
+            else {
+                stars[i].position.y = 180
+            }
+        }
+        
+        mesh.rotation.y += 0.01;
+
+        // Draw the scene
+        renderer.render(scene, camera)
+    }
+    
+    // see you again soon
+    requestAnimationFrame(update)
+}
+
+// guard against unsafe integer values
+function updateTick () {
+    switch (tick == Number.MAX_SAFE_INTEGER) {
+        case true:  tick = 0; break
+        case false: tick++;   break
+    }
+}
+
+// Entry Point
+requestAnimationFrame(update);
