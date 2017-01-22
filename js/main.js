@@ -150,8 +150,8 @@ function update () {
         
         // animate objects
         
-        camera.position.x = (Math.sin((tick + (mouseX*0.01))/spin) * radius)
-        camera.position.z = (Math.cos((tick + (mouseY*0.01))/spin) * radius)
+        camera.position.x = (Math.sin((tick + (mouseX*0.005))/spin) * radius)
+        camera.position.z = (Math.cos((tick + (mouseY*0.005))/spin) * radius)
        //camera.position.x += ( mouseX - camera.position.x ) * 0.001;
        //camera.position.y += ( - mouseY - camera.position.y ) * .05;
         
