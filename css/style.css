@@ -4,6 +4,7 @@
     color: #eee8d5;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     list-style: none;
+    overflow-x: hidden;
 }
 
 *:hover {
@@ -189,7 +190,7 @@ input {
 
 .textField {
     background-color: #eee8d5;
-    padding: 0.4em;
+    padding: 0.32em;
 }
 
 .textField:hover {
