@@ -8,9 +8,6 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <!-- Vanilla-y JavaScript -->
-        <script src="js/button.js"></script>
-        
         <!-- HTML -->
         <header>
             <h1>Rocks</h1>
@@ -37,8 +34,14 @@
 
                 <img id="example" src="assets/placeholder.jpg" alt="shpace, the final frontier">
                 
-                <div id="showcase">
+                <h3>customisable ships</h3>
                 
+                <div id="showcase">
+                    <img class="spriteShowcase" src="assets/sprite1.png" alt="computer says no">
+                    <img class="spriteShowcase" src="assets/sprite1.png" alt="computer says no">
+                    <img class="spriteShowcase" src="assets/sprite1.png" alt="computer says no">
+                    
+                    <!-- 
                     <video class="spriteShowcase" width="400" height="320" autoplay loop muted>
                         <source src="assets/sprite1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -51,20 +54,31 @@
                         <source src="assets/sprite3.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    -->
                 </div>
                 
-                <h3 id="sign-up">Sign up for the beta today!</h3>
+                <h3 id="signUpMessage">Sign up for the beta today!</h3>
 
-                <form id="sign-up">
-                    <p>Name:</p>
-                    <input type="text" name="name"><br>
-                    <p>Email:</p>
-                    <input type="text" name="email">
-                    <p></p>
-                    <button id="submit" type="submit">submit</button>     
-                </form>
+                  <form id="signUpForm"> <!--action="#" method="post">-->
+                    <ul>
+                        <li> 
+                            <label for="Namee">Name:</label>
+                            <input class="textField" type="text" id="Name" placeholder="name">
+                        </li>
+
+                        <li>
+                            <label for="Email">Email:</label>
+                            <input class="textField" type="text" id="Email" placeholder="email">
+                        </li>
+                    </ul>
+
+                    <input id="submitButton" type="submit">
+                  </form>
             </div>
         </div>
+        
+                <!-- Vanilla-y JavaScript -->
+        <script src="js/button.js"></script>
         
         <footer>
             <p>Ryan Needham</p>

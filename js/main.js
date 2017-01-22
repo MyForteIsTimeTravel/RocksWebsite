@@ -72,7 +72,12 @@ pointLight.position.y = 0
 pointLight.position.z = 600
 pointLight.rotation   = 20 * (Math.PI / 180)
 pointLight.castShadow = true
+pointLight.power = 2
 scene.add(pointLight)
+
+const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.2)
+scene.add(ambientLight)
+
 
 /* * * * * * * * * * * * * * * *
  * World Objects
@@ -96,13 +101,20 @@ loader.load( 'assets/textured.json', function ( geometry ) {
 
 }); 
 
-var starCount = 160
+var starCount = 1000
 var stars = new Array()
 var starSpeeds = new Array()
 
+function betterRand () {
+    var rand = Math.random()
+    if (Math.random() > 0.5) {rand *= -1} 
+    return rand;
+}
+
+// one way
 for (var i = 0; i < starCount; i++) {
     const obj = new THREE.Mesh(
-        new THREE.CubeGeometry(1, 1, 1),                 // Vertex Shader
+        new THREE.SphereGeometry( 0.2, 4, 4 ),               // Vertex Shader
         new THREE.MeshBasicMaterial({color: 0xDDDDDD})    // Fragment Shader
     );
 
@@ -110,17 +122,10 @@ for (var i = 0; i < starCount; i++) {
     obj.receiveShadow  = true
     
     
-    // generate horizontal pos
-    obj.position.x     = Math.random () * 360
-    var ting = Math.random()
-    if      (ting < 0.5)  { ; }
-    else if (ting >= 0.5) { obj.position.x -= (obj.position.x*2) }
-    
-    //generate vertical pos
-    obj.position.y     = Math.random () * 270
-    
-    // set far back
-    obj.position.z     = -330
+    obj.position.x = ((betterRand() + 0.4) * 300)
+    obj.position.y = ((betterRand() + 0.4) * 300)
+    obj.position.z = ((betterRand() + 0.4) * 300)
+
     // management
     stars[i] = obj
     var ting = Math.random()
@@ -129,7 +134,7 @@ for (var i = 0; i < starCount; i++) {
         starSpeeds[i] = 1.0
     }
     else if (ting > 0.16 && ting < 0.66) {
-        obj.material.color.setHex( 0xAAAAAA );
+        obj.material.color.setHex( 0xAAAAAA )
         starSpeeds[i] = 0.4
     }
     else if (ting > 0.66) {
@@ -140,8 +145,6 @@ for (var i = 0; i < starCount; i++) {
     scene.add(obj)
 }
 
-
-
 /* * * * * * * * * * * * * * * *
  * ON UPDATE
  * * * * * * * * * * * * * * * */
@@ -149,7 +152,7 @@ var paused = false
 var tick = 0
 
 var radius = 10
-var spin = 40
+var spin = 4
 
 function update () {
     if (!paused) {
@@ -166,6 +169,7 @@ function update () {
         
         camera.lookAt(scene.position)
         
+        
         for (var i = 0; i < starCount; i++) {
             if (stars[i].position.y > -200) {
                stars[i].position.y -= starSpeeds[i];
@@ -174,6 +178,7 @@ function update () {
                 stars[i].position.y = 180
             }
         }
+        
         
         if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
         else { mesh.position.x -= Math.random() * 0.001 }

@@ -3,6 +3,7 @@
     padding: 0;
     color: #F0F0F0;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    list-style: none;
 }
 
 *:hover {
@@ -97,17 +98,17 @@ video {
 
 @keyframes emphasize {
   0%   { background-color: #202020; color: #FFFFFF;}
-  100% { background-color: #282828; color: #FFFFFF;}
+  100% { background-color: #1B1B1B; color: #FFFFFF;}
 }
 
 @keyframes de-emphasize {
-  0%   { background-color: #282828; color: #FFFFFF;}
+  0%   { background-color: #1B1B1B; color: #FFFFFF;}
   100% { background-color: #202020; color: #FFFFFF;}
 }
 
 .contentbox {
     animation: de-emphasize 0.2s linear;
-    width: 95%;
+    width: 80%;
     height: 100%;
     margin-right: auto;
     margin-left: auto;
@@ -119,16 +120,11 @@ video {
 
 .contentbox:hover {
     animation: emphasize 0.5s linear;
-    background-color: #282828;
+    background-color: #1B1B1B;
     color: #FFFFFF;
 }
 
-#example1 {
-    width: 60%;
-}
-
 #example {
-    padding: 2em;
     width: 0;
     height: 0;
 }
@@ -149,22 +145,22 @@ video {
 .spriteShowcase {
     animation: spriteDemphasize 0.2s linear;
     margin: 1em auto;
-    width: 40%;
+    width: 30%;
 }
 
 .spriteShowcase:hover {
     animation: spriteEmphasize 0.2s linear;
-    width: 50%;
+    width: 32%;
 }
 
 @keyframes spriteEmphasize {
-  0%   { width: 40%; }
-  100% { width: 50%; }
+  0%   { width: 30%; }
+  100% { width: 32%; }
 }
 
 @keyframes spriteDemphasize {
-  0%   { width: 50%; }
-  100% { width: 40%%; }
+  0%   { width: 32%; }
+  100% { width: 30%%; }
 }
 
 
@@ -177,7 +173,12 @@ input {
     margin: 1em;
 }
 
-button {
+.textField {
+    color: #FAFAFA;
+    padding: 0.4em;
+}
+
+#submitButton {
     background-color: #202020;
     border: none;
     color: white;
@@ -193,6 +194,6 @@ button {
 
 button:hover {
     animation: emphasize 0.5s linear;
-    background-color: #282828;
+    background-color: #191919;
     cursor: pointer;
 }
