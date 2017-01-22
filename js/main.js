@@ -8,7 +8,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * */
 const container = document.querySelector('#canvasContainer')
 var   width     = window.innerWidth
-var   height    = window.innerHeight * 0.60
+var   height    = window.innerHeight// * 0.60
 
 // handle window resizing
 window.addEventListener('resize', resizeCallback, false);
@@ -25,31 +25,68 @@ function resizeCallback () {
 /* * * * * * * * * * * * * *
  * Setup WebGL Rendering
  * * * * * * * * * * * * * */
-const VIEW_ANGLE = 45
+const VIEW_ANGLE = 70
 const ASPECT     = width / height
 const NEAR       = 0.1
-const FAR        = 10000
+const FAR        = 1000
 
-const renderer = new THREE.WebGLRenderer({antialias: true})
-const camera   = new THREE.PerspectiveCamera(
+var camera
+var scene
+var renderer
+var controls
+var effect
+
+// check for VR
+if (WEBVR.isAvailable() === false) {
+				document.body.appendChild( WEBVR.getMessage() );
+}
+
+scene      = new THREE.Scene()
+scene.background = new THREE.Color(0x202020)
+camera   = new THREE.PerspectiveCamera(
     VIEW_ANGLE,
     ASPECT,
     NEAR,
     FAR
 )
 
-const scene      = new THREE.Scene()
-scene.background = new THREE.Color(0x202020)
 scene.add(camera)
 
-camera.position.z = 5
+renderer = new THREE.WebGLRenderer({antialias: true})
 
+
+
+
+//camera.position.z = 5
+/*
 renderer.setSize(width, height)
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type    = THREE.PCFSoftShadowMap
+*/
+
+renderer.setClearColor( 0x505050 );
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize( width, height );
+renderer.sortObjects = false;
 
 // Attach canvas renderer
 container.appendChild(renderer.domElement)
+
+// vr
+controls = new THREE.VRControls( camera );
+effect = new THREE.VREffect( renderer );
+
+if ( navigator.getVRDisplays ) {
+    navigator.getVRDisplays()
+        .then( function ( displays ) {
+            effect.setVRDisplay( displays[ 0 ] );
+            controls.setVRDisplay( displays[ 0 ] );
+        } )
+        .catch( function () {
+            console.log("NOOOOOPE")
+        } );
+    document.body.appendChild( WEBVR.getButton( effect ) );
+}
 
 /* * * * * * * * * * * * * *
  * Lighting
@@ -73,21 +110,19 @@ scene.add(ambientLight)
 var loader = new THREE.JSONLoader();
 var mesh
 
-loader.load( 'assets/textured.json', function ( geometry ) {
+//loader.load( 'assets/textured.json', function ( geometry ) {
     var material = new THREE.MeshLambertMaterial({color:0xc19170});
+    var geometry = new THREE.SphereGeometry( 12, 4, 4 )
     
     mesh = new THREE.Mesh( geometry, material );
 
     mesh.position.x = 0;
     mesh.position.y = 0;
     mesh.position.z = 0;
-    
-    mesh.receiveShadow = true
-    mesh.castShadow = true
         
     scene.add( mesh );
 
-}); 
+//}); 
 
 var starCount = 1000
 var stars = new Array()
@@ -105,9 +140,6 @@ for (var i = 0; i < starCount; i++) {
         new THREE.SphereGeometry( 0.2, 4, 4 ),               // Vertex Shader
         new THREE.MeshBasicMaterial({color: 0xDDDDDD})    // Fragment Shader
     );
-
-    obj.castShadow     = true
-    obj.receiveShadow  = true
     
     
     obj.position.x = ((betterRand() + 0.4) * 300)
@@ -152,10 +184,10 @@ function update () {
         
         camera.position.x = (Math.sin((tick + (mouseX*0.01))/spin) * radius)
         camera.position.z = (Math.cos((tick + (mouseY*0.01))/spin) * radius)
-       //camera.position.x += ( mouseX - camera.position.x ) * 0.001;
-       //camera.position.y += ( - mouseY - camera.position.y ) * .05;
+        camera.position.x += ( mouseX - camera.position.x ) * 0.001;
+        camera.position.y += ( - mouseY - camera.position.y ) * .05;
         
-        camera.lookAt(scene.position)
+        camera.lookAt(mesh.position)
         
         
         for (var i = 0; i < starCount; i++) {
@@ -170,11 +202,14 @@ function update () {
         
         if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
         else { mesh.position.x -= Math.random() * 0.001 }
+        
         mesh.rotation.z += 0.01;
         mesh.rotation.y += 0.01;
-
+        
         // Draw the scene
-        renderer.render(scene, camera)
+        //renderer.render(scene, camera)
+        controls.update()
+        effect.render(scene, camera)
     }
     
     // see you again soon
