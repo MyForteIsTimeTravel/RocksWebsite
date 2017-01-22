@@ -20,18 +20,6 @@ function resizeCallback () {
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
     
-    /*
-    for (var i = 0; i < starCount; i++) {
-        // generate horizontal pos
-        stars[i].position.x     = Math.random () * 360
-        var ting = Math.random()
-        if      (ting < 0.5)  { ; }
-        else if (ting >= 0.5) { stars[i].position.x -= (stars[i].position.x*2) }
-
-        //generate vertical pos
-        stars[i].position.y     = Math.random () * 370
-    }
-    */
 }
 
 /* * * * * * * * * * * * * *

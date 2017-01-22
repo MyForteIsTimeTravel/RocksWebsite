@@ -1,7 +1,7 @@
 * {
     margin:  0;
     padding: 0;
-    color: #F0F0F0;
+    color: #eee8d5;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     list-style: none;
 }
@@ -34,12 +34,12 @@ h2 {
 }
 
 h3 {
-    color: #363636;
+    margin-top: 2em;
+    color: #393939;
     padding: 1em;
 }
 
 p {
-    color: #F3F3F3;
     font-size: 0.8em;
 }
 
@@ -107,7 +107,7 @@ video {
 }
 
 .contentbox {
-    animation: de-emphasize 0.2s linear;
+    animation: de-emphasize 0.1s linear;
     width: 80%;
     height: 100%;
     margin-right: auto;
@@ -119,9 +119,17 @@ video {
 }
 
 .contentbox:hover {
-    animation: emphasize 0.5s linear;
+    animation: emphasize 0.1s linear;
     background-color: #1B1B1B;
     color: #FFFFFF;
+}
+
+.contentDescription {
+    width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 #example {
@@ -129,8 +137,9 @@ video {
     height: 0;
 }
 
+/* HARD CODED VALUE: NEEDS BREAKPOINT */
 #description {
-    width: 60%;
+    width: 22em;
     margin-right: auto;
     margin-left: auto;
 }
@@ -144,25 +153,30 @@ video {
 
 .spriteShowcase {
     animation: spriteDemphasize 0.2s linear;
-    margin: 1em auto;
-    width: 30%;
+    width: 270x; 
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .spriteShowcase:hover {
     animation: spriteEmphasize 0.2s linear;
-    width: 32%;
+    width: 290px;
 }
 
 @keyframes spriteEmphasize {
-  0%   { width: 30%; }
-  100% { width: 32%; }
+  0%   { width: 270px; }
+  100% { width: 290px; }
 }
 
 @keyframes spriteDemphasize {
-  0%   { width: 32%; }
-  100% { width: 30%%; }
+  0%   { width: 290px; }
+  100% { width: 270px; }
 }
 
+#musicPlayer {
+    background-color: #202020;
+}
 
 #sign-up {
     padding: 1em;
@@ -174,14 +188,20 @@ input {
 }
 
 .textField {
-    color: #FAFAFA;
+    background-color: #eee8d5;
     padding: 0.4em;
 }
 
+.textField:hover {
+    cursor:text;
+}
+
+
 #submitButton {
+    animation: demphasize 0.2s linear;
     background-color: #202020;
     border: none;
-    color: white;
+    color: #eee8d5;
     padding: 10px 30px;
     text-align: center;
     text-decoration: none;
@@ -192,8 +212,8 @@ input {
     cursor: pointer;
 }
 
-button:hover {
-    animation: emphasize 0.5s linear;
+#submitButton:hover {
+    animation: demphasize 0.2s linear;
     background-color: #191919;
     cursor: pointer;
 }
