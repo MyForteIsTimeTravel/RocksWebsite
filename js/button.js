@@ -6,6 +6,7 @@
     var acknowledge = function (event) {
         event.preventDefault()
         signUpMessage.innerHTML = "check your emails, an invite is on its way!"
+        signUpMessage.style.paddingBottom = "3em"
         signUpForm.style.width = "0"
         signUpForm.style.height = "0"
     }

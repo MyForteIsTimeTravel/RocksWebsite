@@ -13,8 +13,8 @@ var   height    = window.innerHeight * 0.60
 // handle window resizing
 window.addEventListener('resize', resizeCallback, false);
 function resizeCallback () {
-    width = window.innerWidth
-    height    = window.innerHeight * 0.60
+    width  = window.innerWidth
+    height = window.innerHeight * 0.60
     
     camera.aspect = width/height;
     camera.updateProjectionMatrix();
@@ -73,7 +73,7 @@ scene.add(ambientLight)
 var loader = new THREE.JSONLoader();
 var mesh
 
-loader.load( 'assets/textured.json', function ( geometry ) {
+loader.load( 'assets/asteroid.json', function ( geometry ) {
     var material = new THREE.MeshLambertMaterial({color:0xc19170});
     
     mesh = new THREE.Mesh( geometry, material );

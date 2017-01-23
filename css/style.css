@@ -17,7 +17,6 @@ body {
     background: rgba(40, 40, 40, 1.0);
     overflow: auto;
     opacity: 1;
-
 }
 
 @keyframes fade {
@@ -48,7 +47,6 @@ header {
     background: rgba(50, 50, 50, 1.0);
     padding: 1.2em;
     margin-top: 0.4%;
-    
 }
 
 footer {
@@ -90,21 +88,14 @@ footer {
     text-align: center;
 }
 
-video {
-    display: block;
-    margin: 0 auto;
-    width: 40%;
-    height: 20%
-}
-
 @keyframes emphasize {
-  0%   { background-color: #202020; color: #FFFFFF;}
-  100% { background-color: #1B1B1B; color: #FFFFFF;}
+    0%   { background-color: #202020; color: #FFFFFF;}
+    100% { background-color: #1B1B1B; color: #FFFFFF;}
 }
 
 @keyframes de-emphasize {
-  0%   { background-color: #1B1B1B; color: #FFFFFF;}
-  100% { background-color: #202020; color: #FFFFFF;}
+    0%   { background-color: #1B1B1B; color: #FFFFFF;}
+    100% { background-color: #202020; color: #FFFFFF;}
 }
 
 .contentbox {
@@ -126,16 +117,11 @@ video {
 }
 
 .contentDescription {
-    width: 60em;
+    width: 36em;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1em;
     margin-bottom: 1em;
-}
-
-#example {
-    width: 0;
-    height: 0;
 }
 
 /* HARD CODED VALUE: NEEDS BREAKPOINT */
@@ -145,7 +131,7 @@ video {
     margin-left: auto;
 }
 
-#showcase {
+.mainContent {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
@@ -166,13 +152,13 @@ video {
 }
 
 @keyframes spriteEmphasize {
-  0%   { width: 270px; }
-  100% { width: 290px; }
+    0%   { width: 270px; }
+    100% { width: 290px; }
 }
 
 @keyframes spriteDemphasize {
-  0%   { width: 290px; }
-  100% { width: 270px; }
+    0%   { width: 290px; }
+    100% { width: 270px; }
 }
 
 #musicPlayer {
@@ -197,7 +183,6 @@ input {
     cursor:text;
 }
 
-
 #submitButton {
     animation: demphasize 0.2s linear;
     background-color: #202020;
@@ -209,12 +194,14 @@ input {
     display: inline-block;
     font-size: 16px;
     margin: 0.5em;
-    margin-bottom: 1.2em;
-    cursor: pointer;
 }
 
 #submitButton:hover {
     animation: demphasize 0.2s linear;
     background-color: #191919;
+    cursor: pointer;
+}
+
+#supportLink:hover {
     cursor: pointer;
 }

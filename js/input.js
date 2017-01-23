@@ -9,9 +9,36 @@ var middleY = window.innerHeight / 2
 var lastTouchX = 0
 var lastTouchY = 0
 
+var fullscreen = false
+
 canvas.addEventListener("mouseover", function (e) {onCanvas = true})
 canvas.addEventListener("mouseout",  function (e) {onCanvas = false})
+canvas.addEventListener("click", function (e) {
+    /*
+    if (fullscreen === false ){
+        width  = window.innerWidth
+        height = window.innerHeight
 
+        camera.aspect = width/height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    
+        fullscreen = true
+    }
+    
+    else {
+        width  = window.innerWidth
+        height = window.innerHeight * 0.60
+
+        camera.aspect = width/height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    
+        fullscreen = false
+    }
+    */
+
+})
 
 /*
 canvas.addEventListener("touchstart", function (e) {
