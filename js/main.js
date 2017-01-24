@@ -89,7 +89,7 @@ loader.load( 'assets/asteroid.json', function ( geometry ) {
 
 }); 
 
-var starCount = 1000
+var starCount = 500
 var stars = new Array()
 var starSpeeds = new Array()
 
@@ -168,8 +168,8 @@ function update () {
         }
         
         
-        if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
-        else { mesh.position.x -= Math.random() * 0.001 }
+        //if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
+        //else { mesh.position.x -= Math.random() * 0.001 }
         mesh.rotation.z += 0.01;
         mesh.rotation.y += 0.01;
 
