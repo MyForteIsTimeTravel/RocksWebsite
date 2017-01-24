@@ -87,107 +87,110 @@ loader.load( 'assets/asteroid.json', function ( geometry ) {
         
     scene.add( mesh );
 
+    var starCount = 500
+    var stars = new Array()
+    var starSpeeds = new Array()
+
+    function betterRand () {
+        var rand = Math.random()
+        if (Math.random() > 0.5) {rand *= -1} 
+        return rand;
+    }
+
+    // one way
+    for (var i = 0; i < starCount; i++) {
+        const obj = new THREE.Mesh(
+            new THREE.SphereGeometry( 0.2, 4, 4 ),               // Vertex Shader
+            new THREE.MeshBasicMaterial({color: 0xDDDDDD})    // Fragment Shader
+        );
+
+        obj.castShadow     = true
+        obj.receiveShadow  = true
+
+
+        obj.position.x = ((betterRand() + 0.4) * 300)
+        obj.position.y = ((betterRand() + 0.4) * 300)
+        obj.position.z = ((betterRand() + 0.4) * 300)
+
+        // management
+        stars[i] = obj
+        var ting = Math.random()
+        if (ting < 0.16) {
+            obj.material.color.setHex( 0xFFFFFF )
+            starSpeeds[i] = 1.0
+        }
+        else if (ting > 0.16 && ting < 0.66) {
+            obj.material.color.setHex( 0xAAAAAA )
+            starSpeeds[i] = 0.4
+        }
+        else if (ting > 0.66) {
+            obj.material.color.setHex( 0x444444 )
+            starSpeeds[i] = 0.2
+        }
+        console.log(starSpeeds[i])
+        scene.add(obj)
+    }
+
+    /* * * * * * * * * * * * * * * *
+     * ON UPDATE
+     * * * * * * * * * * * * * * * */
+    var paused = false
+    var tick = 0
+
+    var radius = 10
+    var spin = 4
+
+    function update () {
+        if (!paused) {
+            updateTick()
+            updateInput()
+
+
+            // animate objects
+
+            camera.position.x = (Math.sin((tick + (mouseX*0.005))/spin) * radius)
+            camera.position.z = (Math.cos((tick + (mouseY*0.005))/spin) * radius)
+           //camera.position.x += ( mouseX - camera.position.x ) * 0.001;
+           //camera.position.y += ( - mouseY - camera.position.y ) * .05;
+
+            camera.lookAt(scene.position)
+
+
+            for (var i = 0; i < starCount; i++) {
+                if (stars[i].position.y > -200) {
+                   stars[i].position.y -= starSpeeds[i];
+                }
+                else {
+                    stars[i].position.y = 180
+                }
+            }
+
+            if (!(mesh === null)) {
+                if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
+                else { mesh.position.x -= Math.random() * 0.001 }
+                mesh.rotation.z += 0.01;
+                mesh.rotation.y += 0.01;   
+            }
+
+            // Draw the scene
+            renderer.render(scene, camera)
+        }
+
+        // see you again soon
+        requestAnimationFrame(update)
+    }
+
+    // guard against unsafe integer values
+    function updateTick () {
+        switch (tick == Number.MAX_SAFE_INTEGER) {
+            case true:  tick = 0; break
+            case false: tick += 0.01;   break
+        }
+    }
+
+    // Entry Point
+    requestAnimationFrame(update);
+    
 }); 
 
-var starCount = 500
-var stars = new Array()
-var starSpeeds = new Array()
 
-function betterRand () {
-    var rand = Math.random()
-    if (Math.random() > 0.5) {rand *= -1} 
-    return rand;
-}
-
-// one way
-for (var i = 0; i < starCount; i++) {
-    const obj = new THREE.Mesh(
-        new THREE.SphereGeometry( 0.2, 4, 4 ),               // Vertex Shader
-        new THREE.MeshBasicMaterial({color: 0xDDDDDD})    // Fragment Shader
-    );
-
-    obj.castShadow     = true
-    obj.receiveShadow  = true
-    
-    
-    obj.position.x = ((betterRand() + 0.4) * 300)
-    obj.position.y = ((betterRand() + 0.4) * 300)
-    obj.position.z = ((betterRand() + 0.4) * 300)
-
-    // management
-    stars[i] = obj
-    var ting = Math.random()
-    if (ting < 0.16) {
-        obj.material.color.setHex( 0xFFFFFF )
-        starSpeeds[i] = 1.0
-    }
-    else if (ting > 0.16 && ting < 0.66) {
-        obj.material.color.setHex( 0xAAAAAA )
-        starSpeeds[i] = 0.4
-    }
-    else if (ting > 0.66) {
-        obj.material.color.setHex( 0x444444 )
-        starSpeeds[i] = 0.2
-    }
-    console.log(starSpeeds[i])
-    scene.add(obj)
-}
-
-/* * * * * * * * * * * * * * * *
- * ON UPDATE
- * * * * * * * * * * * * * * * */
-var paused = false
-var tick = 0
-
-var radius = 10
-var spin = 4
-
-function update () {
-    if (!paused) {
-        updateTick()
-        updateInput()
-
-        
-        // animate objects
-        
-        camera.position.x = (Math.sin((tick + (mouseX*0.005))/spin) * radius)
-        camera.position.z = (Math.cos((tick + (mouseY*0.005))/spin) * radius)
-       //camera.position.x += ( mouseX - camera.position.x ) * 0.001;
-       //camera.position.y += ( - mouseY - camera.position.y ) * .05;
-        
-        camera.lookAt(scene.position)
-        
-        
-        for (var i = 0; i < starCount; i++) {
-            if (stars[i].position.y > -200) {
-               stars[i].position.y -= starSpeeds[i];
-            }
-            else {
-                stars[i].position.y = 180
-            }
-        }
-        
-        
-        //if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
-        //else { mesh.position.x -= Math.random() * 0.001 }
-        mesh.rotation.z += 0.01;
-        mesh.rotation.y += 0.01;
-
-        // Draw the scene
-        renderer.render(scene, camera)
-    }
-    
-    // see you again soon
-    requestAnimationFrame(update)
-}
-
-// guard against unsafe integer values
-function updateTick () {
-    switch (tick == Number.MAX_SAFE_INTEGER) {
-        case true:  tick = 0; break
-        case false: tick += 0.01;   break
-    }
-}
-
-// Entry Point
-requestAnimationFrame(update);
