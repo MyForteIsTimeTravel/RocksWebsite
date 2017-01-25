@@ -116,6 +116,8 @@ footer {
     color: #FFFFFF;
 }
 
+/* HARD CODED VALUE: NEEDS BREAKPOINT */
+
 .contentDescription {
     width: 36em;
     margin-left: auto;
@@ -124,7 +126,6 @@ footer {
     margin-bottom: 1em;
 }
 
-/* HARD CODED VALUE: NEEDS BREAKPOINT */
 #description {
     width: 22em;
     margin-right: auto;
@@ -137,6 +138,19 @@ footer {
     margin-left: auto;
     align-content: center;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .contentDescription {
+        width: 18em;
+    }
+
+    #description {
+        width: 14em;
+    }
+}
+
+/* HARD CODED VALUE: NEEDS BREAKPOINT */
 
 .spriteShowcase {
     animation: spriteDemphasize 0.2s linear;
@@ -177,7 +191,8 @@ input {
 .textField {
     background-color: #eee8d5;
     color: #202020;
-    padding: 0.32em;
+    padding: 0.5em;
+    padding-top: 0.2em;
 }
 
 .textField:hover {
