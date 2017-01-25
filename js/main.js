@@ -75,10 +75,10 @@ var mesh
 
 /** 
  *  This cannot be allowed to run asynchronously with the rest of the program
- *  or the render calls will through null errors while this gets dragged off
+ *  or the render calls will throw null errors while this gets dragged off
  *  disk
  */
-loader.load( 'assets/asteroid.json', function ( geometry ) {
+loader.load('assets/asteroid.json', function (geometry) {
     var material = new THREE.MeshLambertMaterial({color:0xc19170});
     
     mesh = new THREE.Mesh( geometry, material );
