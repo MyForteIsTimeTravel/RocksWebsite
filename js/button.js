@@ -18,6 +18,5 @@
     else {
         document.getElementById("submitButton").addEventListener("onclick", acknowledge)
         //signUpForm.addEventListener("submit", acknowledge);
-        event.preventDefault();
     }
 }());
