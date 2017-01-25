@@ -92,7 +92,7 @@ loader.load( 'assets/asteroid.json', function ( geometry ) {
         
     scene.add( mesh );
 
-    var starCount = 500
+    var starCount = 1000
     var stars = new Array()
     var starSpeeds = new Array()
 
