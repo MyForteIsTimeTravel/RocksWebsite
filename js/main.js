@@ -19,7 +19,6 @@ function resizeCallback () {
     camera.aspect = width/height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
-    
 }
 
 /* * * * * * * * * * * * * *
@@ -66,13 +65,10 @@ scene.add(pointLight)
 const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.2)
 scene.add(ambientLight)
 
-
 /* * * * * * * * * * * * * * * *
  * World Objects
  * * * * * * * * * * * * * * * */
 var loader = new THREE.JSONLoader();
-var mesh
-
 /** 
  *  This cannot be allowed to run asynchronously with the rest of the program
  *  or the render calls will throw null errors while this gets dragged off
@@ -80,17 +76,16 @@ var mesh
  */
 loader.load('assets/asteroid.json', function (geometry) {
     var material = new THREE.MeshLambertMaterial({color:0xc19170});
-    
-    mesh = new THREE.Mesh( geometry, material );
+    var mesh     = new THREE.Mesh( geometry, material );
 
     mesh.position.x = 0;
     mesh.position.y = 0;
     mesh.position.z = 0;
     
     mesh.receiveShadow = true
-    mesh.castShadow = true
+    mesh.castShadow    = true
         
-    scene.add( mesh );
+    scene.add(mesh);
 
     var starCount = 1000
     var stars = new Array()
@@ -112,7 +107,6 @@ loader.load('assets/asteroid.json', function (geometry) {
         obj.castShadow     = true
         obj.receiveShadow  = true
 
-
         obj.position.x = ((betterRand() + 0.4) * 300)
         obj.position.y = ((betterRand() + 0.4) * 300)
         obj.position.z = ((betterRand() + 0.4) * 300)
@@ -121,18 +115,17 @@ loader.load('assets/asteroid.json', function (geometry) {
         stars[i] = obj
         var ting = Math.random()
         if (ting < 0.16) {
-            obj.material.color.setHex( 0xFFFFFF )
+            obj.material.color.setHex(0xFFFFFF)
             starSpeeds[i] = 1.0
         }
         else if (ting > 0.16 && ting < 0.66) {
-            obj.material.color.setHex( 0xAAAAAA )
+            obj.material.color.setHex(0xAAAAAA)
             starSpeeds[i] = 0.4
         }
         else if (ting > 0.66) {
-            obj.material.color.setHex( 0x444444 )
+            obj.material.color.setHex(0x444444)
             starSpeeds[i] = 0.2
         }
-        console.log(starSpeeds[i])
         scene.add(obj)
     }
 
@@ -140,26 +133,20 @@ loader.load('assets/asteroid.json', function (geometry) {
      * ON UPDATE
      * * * * * * * * * * * * * * * */
     var paused = false
-    var tick = 0
+    var tick   = 0
 
     var radius = 10
-    var spin = 4
+    var spin   = 4
 
     function update () {
         if (!paused) {
             updateTick()
             updateInput()
 
-
-            // animate objects
-
+            // Pan the camera around the asteroid
             camera.position.x = (Math.sin((tick + (mouseX*0.005))/spin) * radius)
             camera.position.z = (Math.cos((tick + (mouseY*0.005))/spin) * radius)
-           //camera.position.x += ( mouseX - camera.position.x ) * 0.001;
-           //camera.position.y += ( - mouseY - camera.position.y ) * .05;
-
             camera.lookAt(scene.position)
-
 
             for (var i = 0; i < starCount; i++) {
                 if (stars[i].position.y > -200) {
@@ -170,12 +157,10 @@ loader.load('assets/asteroid.json', function (geometry) {
                 }
             }
 
-            if (!(mesh === null)) {
-                if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
-                else { mesh.position.x -= Math.random() * 0.001 }
-                mesh.rotation.z += 0.01;
-                mesh.rotation.y += 0.01;   
-            }
+            if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
+            else { mesh.position.x -= Math.random() * 0.001 }
+            mesh.rotation.z += 0.01;
+            mesh.rotation.y += 0.01;   
 
             // Draw the scene
             renderer.render(scene, camera)
