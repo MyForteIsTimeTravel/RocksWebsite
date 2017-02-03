@@ -62,6 +62,16 @@ pointLight.castShadow = true
 pointLight.power = 2
 scene.add(pointLight)
 
+const pointLight2 = new THREE.PointLight(0xFFFFFF)
+pointLight2.position.x = 0
+pointLight2.position.y = 0
+pointLight2.position.z = -600
+pointLight2.rotation   = 20 * (Math.PI / 180)
+pointLight2.castShadow = true
+pointLight2.power = 2
+scene.add(pointLight2)
+
+
 const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.2)
 scene.add(ambientLight)
 
