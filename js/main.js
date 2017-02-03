@@ -8,13 +8,13 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * */
 const container = document.querySelector('#canvasContainer')
 var   width     = window.innerWidth
-var   height    = window.innerHeight * 0.60
+var   height    = window.innerHeight * 0.85
 
 // handle window resizing
 window.addEventListener('resize', resizeCallback, false);
 function resizeCallback () {
     width  = window.innerWidth
-    height = window.innerHeight * 0.60
+    height = window.innerHeight * 0.85
     
     camera.aspect = width/height;
     camera.updateProjectionMatrix();

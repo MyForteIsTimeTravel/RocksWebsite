@@ -6,10 +6,11 @@
     list-style: none;
     overflow-x: hidden;
 }
-
+/*
 *:hover {
     cursor:default;
 }
+*/
 
 body {
     width:  100%;
@@ -34,19 +35,50 @@ h2 {
 }
 
 h3 {
-    margin-top: 2em;
-    color: #393939;
+    font-family: 'Raleway', sans-serif;
+    color: #888888;
     padding: 1em;
+}
+
+h4 {
+    font-size: 1emem;
+    display: inline;
 }
 
 p {
     font-size: 0.8em;
 }
 
-header {
-    background: rgba(50, 50, 50, 1.0);
-    padding: 1.2em;
-    margin-top: 0.4%;
+a {
+    text-decoration: none;
+}
+
+.navigationBar {
+    width: 100%;
+    background:rgba(40, 40, 40, 1.0); 
+    position: absolute;
+    padding: 0em;
+}
+
+.navigationBar li {
+    float: right;
+    display: inline-block;
+    margin: 0;
+    padding: 0.6em;
+
+}
+
+.navigationBar li:hover {
+    background:#5B2333;
+    cursor: pointer;
+}
+
+#titleItem {
+    float: left;
+}
+
+#titleItem strong { 
+    font-family: "Courier New", Courier, monospace;
 }
 
 footer {
@@ -60,19 +92,31 @@ footer {
     background: rgba(40, 40, 40, 1.0);
 }
 
-#menu {
-    list-style: none;
-    float: right;
-}
-
-#menu li {
-    padding-left: 2em;
-    padding-right: 2em;
-    float: left;
-}
 
 #heroCanvas {
     width: 100%;
+}
+
+#comingSoon {
+    position: absolute;
+    width: 100%;
+    bottom: 55%;
+}
+
+#comingSoon h2 {
+    font-weight: 10;
+    font-size: 2em;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    color:rgba(238, 232, 213, 0.5);
+}
+
+#comingSoon:hover {
+    background: rgba(238, 232, 213, 0.5);
+}
+
+#comingSoon:hover h2 {
+    color: rgba(200, 200, 200, 0.5);
 }
 
 #pageContent {
@@ -136,88 +180,11 @@ footer {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
+    margin-top: 0.5em;
     align-content: center;
 }
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    .contentDescription {
-        width: 18em;
-    }
-
-    #description {
-        width: 14em;
-    }
-}
-
-/* HARD CODED VALUE: NEEDS BREAKPOINT */
-
-.spriteShowcase {
-    animation: spriteDemphasize 0.2s linear;
-    width: 270x; 
-    height: 160px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.spriteShowcase:hover {
-    animation: spriteEmphasize 0.2s linear;
-    width: 290px;
-}
-
-@keyframes spriteEmphasize {
-    0%   { width: 270px; }
-    100% { width: 290px; }
-}
-
-@keyframes spriteDemphasize {
-    0%   { width: 290px; }
-    100% { width: 270px; }
-}
-
-#musicPlayer {
-    background-color: #202020;
-}
-
-#sign-up {
-    padding: 1em;
-    text-align: center;
-}
-
-input {
-    margin: 1em;
-}
-
-.textField {
-    background-color: #eee8d5;
-    color: #202020;
-    padding: 0.5em;
-    padding-top: 0.2em;
-}
-
-.textField:hover {
-    cursor:text;
-}
-
-#submitButton {
-    animation: demphasize 0.2s linear;
-    background-color: #202020;
-    border: none;
-    color: #eee8d5;
-    padding: 10px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 0.5em;
-}
-
-#submitButton:hover {
-    animation: demphasize 0.2s linear;
-    background-color: #191919;
-    cursor: pointer;
-}
-
-#supportLink:hover {
-    cursor: pointer;
+    
 }
