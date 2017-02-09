@@ -1,7 +1,7 @@
 * {
     margin:  0;
     padding: 0;
-    color: #eee8d5;
+    color: #212121;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     list-style: none;
     overflow-x: hidden;
@@ -15,7 +15,7 @@
 body {
     width:  100%;
     height: 100%;
-    background: rgba(40, 40, 40, 1.0);
+    background:  rgba(238, 232, 213, 1);
     overflow: auto;
     opacity: 1;
 }
@@ -41,7 +41,7 @@ h3 {
 }
 
 h4 {
-    font-size: 1emem;
+    font-size: 1em;
     display: inline;
 }
 
@@ -53,14 +53,9 @@ a {
     text-decoration: none;
 }
 
-video {
-    width: 95%;
-    margin: 1em;
-}
-
 .navigationBar {
     width: 100%;
-    background:rgba(40, 40, 40, 1.0); 
+    background:  rgba(238, 232, 213, 1);
     position: absolute;
     padding: 0em;
 }
@@ -70,7 +65,6 @@ video {
     display: inline-block;
     margin: 0;
     padding: 0.6em;
-
 }
 
 .navigationBar li:hover {
@@ -79,6 +73,7 @@ video {
 }
 
 #titleItem {
+    background:#5B2333;
     float: left;
 }
 
@@ -94,7 +89,7 @@ footer {
     left: 0;
     right: 0;
     text-align: center;
-    background: rgba(40, 40, 40, 1.0);
+    background:  rgba(238, 232, 213, 1);
 }
 
 
@@ -102,14 +97,14 @@ footer {
     width: 100%;
 }
 
-#comingSoon {
+#rocksBanner {
     background: rgba(91, 35, 51, 0.1);
     position: absolute;
     width: 100%;
-    bottom: 50%;
+    bottom: 55%;
 }
 
-#comingSoon h2 {
+#rocksBanner h2 {
     font-weight: 10;
     font-size: 2em;
     font-family: 'Raleway', sans-serif;
@@ -117,29 +112,64 @@ footer {
     color:rgba(238, 232, 213, 0.5);
 }
 
-#comingSoon p {
+#rocksBanner p {
     font-weight: 6;
     font-size: 1em;
     font-family: 'Raleway', sans-serif;
     text-align: center;
-    color:rgba(238, 232, 213, 0.5);
+    color: rgba(238, 232, 213, 0.5);
     padding-bottom: 0.2em;
 }
 
-#comingSoon:hover {
+#rocksBanner:hover {
     background: rgba(91, 35, 51, 0.5);
 }
 
-#comingSoon:hover h2 {
+#rocksBanner:hover h2 {
     color: rgba(238, 232, 213, 0.5);
 }
+
+
+#fedBanner {
+    background: rgba(149, 175, 186, 0.1);
+    position: absolute;
+    width: 100%;
+    bottom: 30%;
+}
+
+#fedBanner h2 {
+    font-weight: 10;
+    font-size: 2em;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    color:rgba(238, 232, 213, 0.5);
+}
+
+#fedBanner p {
+    font-weight: 6;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    color: rgba(238, 232, 213, 0.5);
+    padding-bottom: 0.2em;
+}
+
+#fedBanner:hover {
+    background: rgba(149, 175, 186, 0.5);
+}
+
+#fedBanner:hover h2 {
+    color: rgba(238, 232, 213, 0.5);
+}
+
 
 #pageContent {
     width: 100%;
     height: 100%;
     background-color: #303030;
+    margin-top: 0.4%;
     margin-bottom: 0.4%;
-    padding-top: 5%;
+    padding-top: 0.2em;
     padding-bottom: 0.2em;
     padding-left: none;
     padding-right: none;
@@ -191,7 +221,7 @@ footer {
 }
 
 .mainContent {
-    width: 80%;
+    width: 10%;
     margin-right: auto;
     margin-left: auto;
     margin-top: 1em;

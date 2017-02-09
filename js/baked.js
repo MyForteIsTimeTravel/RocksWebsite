@@ -38,8 +38,8 @@ const camera   = new THREE.PerspectiveCamera(
 )
 
 const scene      = new THREE.Scene()
-scene.background = new THREE.Color(0x202020)
-//scene.background = new THREE.Color(0xFFFFFF)
+//scene.background = new THREE.Color(0x202020)
+scene.background = new THREE.Color(0xABABAB)
 scene.add(camera)
 
 camera.position.z = 5
