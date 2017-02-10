@@ -6,6 +6,8 @@
  *
  *  Ryan Needham
  * * * * * * * * * * * * * * * * * * * * * * * * * * */
+//"use strict";
+
 const container = document.querySelector('#canvasContainer')
 var   width     = window.innerWidth
 var   height    = window.innerHeight * 0.95
