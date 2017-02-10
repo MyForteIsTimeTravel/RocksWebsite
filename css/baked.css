@@ -79,6 +79,7 @@ a {
 
 #titleItem strong { 
     font-family: "Courier New", Courier, monospace;
+    color: #eee8d5;
 }
 
 footer {
@@ -99,6 +100,7 @@ footer {
 
 #rocksBanner {
     background: rgba(91, 35, 51, 0.1);
+    animation: rocksDemphasize 1s linear;
     position: absolute;
     width: 100%;
     bottom: 55%;
@@ -123,6 +125,7 @@ footer {
 
 #rocksBanner:hover {
     background: rgba(91, 35, 51, 0.5);
+    animation: rocksEmphasize 1s linear;
 }
 
 #rocksBanner:hover h2 {
@@ -132,6 +135,7 @@ footer {
 
 #fedBanner {
     background: rgba(149, 175, 186, 0.1);
+    animation: fedDemphasize 1s linear;
     position: absolute;
     width: 100%;
     bottom: 30%;
@@ -155,6 +159,7 @@ footer {
 }
 
 #fedBanner:hover {
+    animation: fedEmphasize 1s linear;
     background: rgba(149, 175, 186, 0.5);
 }
 
@@ -176,14 +181,24 @@ footer {
     text-align: center;
 }
 
-@keyframes emphasize {
-    0%   { background-color: #202020; color: #FFFFFF;}
-    100% { background-color: #1B1B1B; color: #FFFFFF;}
+@keyframes fedEmphasize {
+    0%   { background-color: rgba(149, 175, 186, 0.1);}
+    100% { background-color: rgba(149, 175, 186, 0.5);}
 }
 
-@keyframes de-emphasize {
-    0%   { background-color: #1B1B1B; color: #FFFFFF;}
-    100% { background-color: #202020; color: #FFFFFF;}
+@keyframes fedDemphasize {
+    0%   { background-color: rgba(149, 175, 186, 0.5);}
+    100% { background-color: rgba(149, 175, 186, 0.1);}
+}
+
+@keyframes rocksEmphasize {
+    0%   { background-color: rgba(91, 35, 51, 0.1);}
+    100% { background-color: rgba(91, 35, 51, 0.5);}
+}
+
+@keyframes rocksDemphasize {
+    0%   { background-color: rgba(91, 35, 51, 0.5);}
+    100% { background-color: rgba(91, 35, 51, 0.1);}
 }
 
 .contentbox {

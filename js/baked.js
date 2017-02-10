@@ -62,7 +62,7 @@ function heroAnimation () {
      * * * * * * * * * * * * * * * * * */
     var canvas = document.getElementById("heroCanvas")
     canvas.width = window.innerWidth
-    canvas.height = window.innerHeight * 0.92
+    canvas.height = window.innerHeight * 0.96
     var gl = canvas.getContext('webgl')
     gl.clearColor(0.32, 0.32, 0.32, 1.0)
     gl.clear(gl.COLOR_BUFFER_BIT)
@@ -124,7 +124,7 @@ function heroAnimation () {
     var zIndex = height;
     
     var landscape = [];
-    var step = 0.25
+    var step = 0.5
     
     for (var x = startX; x < width; x += step * 2, xIndex++) {
         for (var z = height; z > endZ; z -= step * 2, zIndex--) {
@@ -213,7 +213,7 @@ function heroAnimation () {
     var viewLoc = gl.getUniformLocation(Shader, 'view')
     mat4.lookAt(view, 
         [0, 2, -5], // position 
-        [0, 0, 0],  // forward
+        [0, 0, 1000],  // forward
         [0, 1, 0]  // up
     );
 
@@ -280,7 +280,7 @@ function heroAnimation () {
         // move camera forward
         mat4.lookAt(view, 
             [0, 1, camZ], // position 
-            [0, 0, 1],  // forward
+            [0, 0, 1000],  // forward
             [0, 1, 0]  // up
         );
         gl.uniformMatrix4fv(viewLoc, gl.FALSE, view)
