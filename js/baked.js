@@ -61,13 +61,15 @@ function heroAnimation () {
      * CONTEXT
      * * * * * * * * * * * * * * * * * */
     var canvas = document.getElementById("heroCanvas")
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight * 0.92
     var gl = canvas.getContext('webgl')
     gl.clearColor(0.32, 0.32, 0.32, 1.0)
     gl.clear(gl.COLOR_BUFFER_BIT)
     gl.enable(gl.DEPTH_TEST)
-    gl.enable(gl.CULL_FACE)
-    gl.frontFace(gl.CCW)
-    gl.cullFace(gl.BACK)
+    //gl.enable(gl.CULL_FACE)
+    //gl.frontFace(gl.CCW)
+    //gl.cullFace(gl.BACK)
 
     /* * * * * * * * * * * * * * * * * * 
      * SHADER
@@ -122,13 +124,14 @@ function heroAnimation () {
     var zIndex = height;
     
     var landscape = [];
+    var step = 0.25
     
-    for (var x = startX; x < width; x += 1.0, xIndex++) {
-        for (var z = height; z > endZ; z -= 1.0, zIndex--) {
+    for (var x = startX; x < width; x += step * 2, xIndex++) {
+        for (var z = height; z > endZ; z -= step * 2, zIndex--) {
             // TRIANGLE 1 VERT 1
-            landscape.push(x - 0.5);    // position x
+            landscape.push(x - step);    // position x
             landscape.push(0.0);       // position y
-            landscape.push(z + 0.5);    // position z
+            landscape.push(z + step);    // position z
             //landscape.push(0.0f);       // normal x
             //landscape.push(1.0f);       // normal y
             //landscape.push(0.0f);       // normal z
@@ -136,9 +139,9 @@ function heroAnimation () {
             //landscape.push((zIndex-1)/height);       // tc v PLACEHOLDER
             
             // TRIANGLE 1 VERT 2
-            landscape.push(x - 0.5);    // position x
+            landscape.push(x - step);    // position x
             landscape.push(0.0);       // position y
-            landscape.push(z - 0.5);    // position z
+            landscape.push(z - step);    // position z
             //landscape.push(0.0f);       // normal x
             //landscape.push(1.0f);       // normal y
             //landscape.push(0.0f);       // normal z
@@ -146,9 +149,9 @@ function heroAnimation () {
             //landscape.push(zIndex/height);       // tc v PLACEHOLDER
             
             // TRIANGLE 1 VERT 3
-            landscape.push(x + 0.5);    // position x
+            landscape.push(x + step);    // position x
             landscape.push(0.0);       // position y
-            landscape.push(z + 0.5);    // position z
+            landscape.push(z + step);    // position z
             //landscape.push(0.0f);       // normal x
             //landscape.push(1.0f);       // normal y
             //landscape.push(0.0f);       // normal z
@@ -156,9 +159,9 @@ function heroAnimation () {
             //landscape.push((zIndex-1)/height);       // tc v PLACEHOLDER
             
             // TRIANGLE 2 VERT 1
-            landscape.push(x + 0.5);    // position x
+            landscape.push(x + step);    // position x
             landscape.push(0.0);       // position y
-            landscape.push(z + 0.5);    // position z
+            landscape.push(z + step);    // position z
             //landscape.push(0.0f);       // normal x
             //landscape.push(1.0f);       // normal y
             //landscape.push(0.0f);       // normal z
@@ -166,9 +169,9 @@ function heroAnimation () {
             //landscape.push((zIndex-1)/height);       // tc v PLACEHOLDER
             
             // TRIANGLE 2 VERT 2
-            landscape.push(x - 0.5);    // position x
+            landscape.push(x - step);    // position x
             landscape.push(0.0);       // position y
-            landscape.push(z - 0.5);    // position z
+            landscape.push(z - step);    // position z
             //landscape.push(0.0f);       // normal x
             //landscape.push(1.0f);       // normal y
             //landscape.push(0.0f);       // normal z
@@ -176,9 +179,9 @@ function heroAnimation () {
             //landscape.push(zIndex/height);       // tc v PLACEHOLDER
             
             // TRIANGLE 2 VERT 3
-            landscape.push(x + 0.5);    // position x
+            landscape.push(x + step);    // position x
             landscape.push(0.0);       // position y
-            landscape.push(z - 0.5);    // position z
+            landscape.push(z - step);    // position z
             //landscape.push(0.0f);       // normal x
             //landscape.push(1.0f);       // normal y
             //landscape.push(0.0f);       // normal z
@@ -221,7 +224,7 @@ function heroAnimation () {
         glMatrix.toRadian(60), // fov
         canvas.width / canvas.height, // aspect
         0.01, // near
-        1000 // far
+        10 // far
     );
 
 
@@ -276,12 +279,12 @@ function heroAnimation () {
 
         // move camera forward
         mat4.lookAt(view, 
-            [0, 2, camZ], // position 
-            [0, 0, 0],  // forward
+            [0, 1, camZ], // position 
+            [0, 0, 1],  // forward
             [0, 1, 0]  // up
         );
         gl.uniformMatrix4fv(viewLoc, gl.FALSE, view)
-        camZ += 0.01
+        camZ += 0.1
         
         // render
         //gl.drawElements(gl.TRIANGLES, boxIndices.length, gl.UNSIGNED_SHORT, 0)
