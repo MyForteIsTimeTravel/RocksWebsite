@@ -1,14 +1,26 @@
 <!DOCTYPE HTML>
 <html lang="en-uk">
     <head>
-        <title>Baked Goods Games</title>
+        <title>Fed Chase for iOS</title>
         <meta charset="utf-8">
         <meta name="author"    content="Ryan Needham"/>
-        <meta name="viewport"  content="width=device-width"> 
+        <meta name="viewport"  content="width=device-width">
+        
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-        <link rel="stylesheet" href="css/baked.css">
+        <link rel="stylesheet" href="css/fed.css">
     </head>
     <body>
+        <!-- 
+            http://thewildeight.com/en/
+            http://www.firewatchgame.com        
+
+                - Both sites fade between hero image and content
+
+                - Cognative theory for font sizing
+
+                - make progressive webapp
+
+        -->
         <!-- HTML -->
         <header>
             <ul class="navigationBar">
@@ -23,13 +35,8 @@
                     </a>
                 </li>
                 <li id="rocksItem">
-                    <a href="fedChase.html">
-                        <strong>Fed Chase</strong>
-                    </a>
-                </li>
-                <li id="rocksItem">
-                    <a href="index.html">
-                        <strong>Rocks</strong>
+                    <a href="about.html">
+                        <strong>About Fed Chase</strong>
                     </a>
                 </li>
                 <li id="titleItem">
@@ -42,28 +49,24 @@
         
         <!-- 3D STUFF -->
         <section id="canvasContainer">
-            <!-- Hero Image -->
-            <canvas id="heroCanvas" width="960" height ="500"></canvas>
-
-            <section id="rocksBanner">
-                <a href="index.html">
-                    <h2>Rocks</h2>
+            <section id="comingSoon">
+                <a href="about.html">
+                    <h2>Fed Chase</h2>
                    <!-- <p>on the iOS app store</p> -->
                 </a>
             </section>
-            </section>
-            <section id="fedBanner">
-                <a href="fedChase.html">
-                    <h2>Fed Chase</h2>
-                    <!-- <p>on the iOS app store</p> -->
-                </a>
-            </section>
+            
         </section>
-    
-        <!-- JavaScript -->
-        <script src="js/gl-matrix-min.js"></script>
-        <script src="js/simplex-noise.js"></script>
-        <script src="js/baked.js"></script>
+        <script src="js/Three.min.js"></script>
+        <script src="js/input.js"></script>
+        <script src="js/main.js"></script>
+        
+        <!-- Single Page Content -->
+        
+        
+        <!-- Vanilla-y JavaScript -->
+        <script src="js/button.js"></script>
+        
         <footer>
             <p>2017</p>
         </footer>

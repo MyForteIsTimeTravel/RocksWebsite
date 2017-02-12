@@ -1,10 +1,10 @@
 * {
     margin:  0;
     padding: 0;
-    color: #212121;
+    color: #eee8d5;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     list-style: none;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 /*
 *:hover {
@@ -15,7 +15,7 @@
 body {
     width:  100%;
     height: 100%;
-    background:  rgba(238, 232, 213, 1);
+    background: rgba(40, 40, 40, 1.0);
     overflow: auto;
     opacity: 1;
 }
@@ -41,7 +41,7 @@ h3 {
 }
 
 h4 {
-    font-size: 1em;
+    font-size: 1emem;
     display: inline;
 }
 
@@ -53,12 +53,16 @@ a {
     text-decoration: none;
 }
 
+video {
+    width: 95%;
+    margin: 1em;
+}
+
 .navigationBar {
     width: 100%;
-    background:  rgba(238, 232, 213, 1);
+    background: rgba(40, 40, 40, 1.0); 
     position: absolute;
-    padding: em;
-    padding: em;
+    padding: 0em;
 }
 
 .navigationBar li {
@@ -66,25 +70,20 @@ a {
     display: inline-block;
     margin: 0;
     padding: 0.6em;
+
 }
 
 .navigationBar li:hover {
-    background:#5B2333;
+    background:rgb(149, 175, 186);
     cursor: pointer;
 }
 
-.navigationBar li:hover strong{
-    color: #eee8d5;
-}
-
 #titleItem {
-    background:#5B2333;
     float: left;
 }
 
 #titleItem strong { 
     font-family: "Courier New", Courier, monospace;
-    color: #eee8d5;
 }
 
 footer {
@@ -95,7 +94,7 @@ footer {
     left: 0;
     right: 0;
     text-align: center;
-    background:  rgba(238, 232, 213, 1);
+    background: rgba(40, 40, 40, 1.0);
 }
 
 
@@ -103,50 +102,15 @@ footer {
     width: 100%;
 }
 
-#rocksBanner {
-    background: rgba(91, 35, 51, 0.1);
-    animation: rocksDemphasize 1s linear;
-    position: absolute;
-    width: 100%;
-    bottom: 55%;
-}
-
-#rocksBanner h2 {
-    font-weight: 10;
-    font-size: 2em;
-    font-family: 'Raleway', sans-serif;
-    text-align: center;
-    color:rgba(238, 232, 213, 0.5);
-}
-
-#rocksBanner p {
-    font-weight: 6;
-    font-size: 1em;
-    font-family: 'Raleway', sans-serif;
-    text-align: center;
-    color: rgba(238, 232, 213, 0.5);
-    padding-bottom: 0.2em;
-}
-
-#rocksBanner:hover {
-    background: rgba(91, 35, 51, 0.5);
-    animation: rocksEmphasize 1s linear;
-}
-
-#rocksBanner:hover h2 {
-    color: rgba(238, 232, 213, 0.5);
-}
-
-
-#fedBanner {
-    background: rgba(149, 175, 186, 0.1);
+#comingSoon {
+    background-color: rgba(149, 175, 186, 0.1);
     animation: fedDemphasize 1s linear;
     position: absolute;
     width: 100%;
-    bottom: 30%;
+    bottom: 42%;
 }
 
-#fedBanner h2 {
+#comingSoon h2 {
     font-weight: 10;
     font-size: 2em;
     font-family: 'Raleway', sans-serif;
@@ -154,36 +118,22 @@ footer {
     color:rgba(238, 232, 213, 0.5);
 }
 
-#fedBanner p {
+#comingSoon p {
     font-weight: 6;
     font-size: 1em;
     font-family: 'Raleway', sans-serif;
     text-align: center;
-    color: rgba(238, 232, 213, 0.5);
+    color:rgba(238, 232, 213, 0.5);
     padding-bottom: 0.2em;
 }
 
-#fedBanner:hover {
+#comingSoon:hover {
+    background-color: rgba(149, 175, 186, 0.5);
     animation: fedEmphasize 1s linear;
-    background: rgba(149, 175, 186, 0.5);
 }
 
-#fedBanner:hover h2 {
+#comingSoon:hover h2 {
     color: rgba(238, 232, 213, 0.5);
-}
-
-
-#pageContent {
-    width: 100%;
-    height: 100%;
-    background-color: #303030;
-    margin-top: 0.4%;
-    margin-bottom: 0.4%;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    padding-left: none;
-    padding-right: none;
-    text-align: center;
 }
 
 @keyframes fedEmphasize {
@@ -196,14 +146,26 @@ footer {
     100% { background-color: rgba(149, 175, 186, 0.1);}
 }
 
-@keyframes rocksEmphasize {
-    0%   { background-color: rgba(91, 35, 51, 0.1);}
-    100% { background-color: rgba(91, 35, 51, 0.5);}
+#pageContent {
+    width: 100%;
+    height: 100%;
+    background-color: #303030;
+    margin-bottom: 0.4%;
+    padding-top: 5%;
+    padding-bottom: 0.2em;
+    padding-left: none;
+    padding-right: none;
+    text-align: center;
 }
 
-@keyframes rocksDemphasize {
-    0%   { background-color: rgba(91, 35, 51, 0.5);}
-    100% { background-color: rgba(91, 35, 51, 0.1);}
+@keyframes emphasize {
+    0%   { background-color: #202020; color: #FFFFFF;}
+    100% { background-color: #1B1B1B; color: #FFFFFF;}
+}
+
+@keyframes de-emphasize {
+    0%   { background-color: #1B1B1B; color: #FFFFFF;}
+    100% { background-color: #202020; color: #FFFFFF;}
 }
 
 .contentbox {
@@ -241,7 +203,7 @@ footer {
 }
 
 .mainContent {
-    width: 10%;
+    width: 80%;
     margin-right: auto;
     margin-left: auto;
     margin-top: 1em;
