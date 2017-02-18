@@ -7,6 +7,18 @@ window.onload = heroAnimation
 
 function heroAnimation () {
     
+    /* * * * * * * * * * * * * * * * * *
+     * Control
+     * * * * * * * * * * * * * * * * * */
+    var banner1 = document.getElementById("rocksBanner")
+    var banner2 = document.getElementById("fedBanner")
+    var animating = false
+    
+    banner1.addEventListener("mouseover", function () { animating = true })
+    banner2.addEventListener("mouseover", function () { animating = true })
+    banner1.addEventListener("mouseout", function () { animating = false })
+    banner2.addEventListener("mouseout", function () { animating = false })
+    
     /* * * * * * * * * * * * * * * * * * 
      * CONTEXT
      * * * * * * * * * * * * * * * * * */
@@ -15,7 +27,7 @@ function heroAnimation () {
     canvas.height   = window.innerHeight * 0.96
     
     var gl          = canvas.getContext('webgl')
-    gl.clearColor   (0.32, 0.32, 0.32, 1.0)
+    gl.clearColor   (0.21, 0.21, 0.21, 1.0)
     gl.clear        (gl.COLOR_BUFFER_BIT)
     gl.enable       (gl.DEPTH_TEST)
     gl.enable       (gl.CULL_FACE)
@@ -67,7 +79,7 @@ function heroAnimation () {
     gl.shaderSource(fragmentShader, [
         'precision highp float;',
         'void main (void) {',
-            'gl_FragColor = vec4(0.21, 0.21, 0.21, 1.0);',
+            'gl_FragColor = vec4(1, 1, 1, 1.0);',
         '}'
     ].join('\n'))
     gl.compileShader(fragmentShader)
@@ -216,8 +228,11 @@ function heroAnimation () {
         /** 
          * animate mesh
          */
-        gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), Math.abs(Math.sin(amp)*1.2))
-        amp += 0.025
+        gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), Math.abs(Math.sin(amp)*0.4))
+        if (animating) 
+            amp += 0.025; 
+        else if (amp > 0)
+            amp -= 0.01
         
         /** 
          * render
