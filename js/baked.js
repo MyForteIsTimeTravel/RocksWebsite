@@ -47,7 +47,6 @@ function heroAnimation () {
     var vertexShader = gl.createShader(gl.VERTEX_SHADER)
     gl.shaderSource(vertexShader, [
         'attribute vec3 vertPos;',
-        //'attribute vec3 vertCol;',
         'varying vec3 fragCol;',
         'uniform mat4 model;',
         'uniform mat4 view;',
@@ -55,7 +54,6 @@ function heroAnimation () {
         'uniform float amp;',
         'float rand(vec2 co) { return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);}',
         'void main (void) {',
-            //'fragCol = vertCol;',
             'float lift = rand(vec2(vertPos.x, vertPos.z)) * amp;',
             'gl_Position = projection * view * model * vec4(vertPos.x, vertPos.y + lift, vertPos.z, 1.0);',
         '}'
@@ -68,7 +66,6 @@ function heroAnimation () {
     var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER)
     gl.shaderSource(fragmentShader, [
         'precision highp float;',
-        //'varying vec3 fragCol;',
         'void main (void) {',
             'gl_FragColor = vec4(0.21, 0.21, 0.21, 1.0);',
         '}'
@@ -94,8 +91,7 @@ function heroAnimation () {
     var xIndex     = 0
     var zIndex     = height
     var landscape  = []
-    var step       = 0.5
-    var simplexMachine = new SimplexNoise()
+    var step       = 0.25
     
     // Data
     for (var x = startX; x < width; x += step * 2, xIndex++) {
@@ -220,7 +216,7 @@ function heroAnimation () {
         /** 
          * animate mesh
          */
-        gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), Math.sin(amp)*1.2)
+        gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), Math.abs(Math.sin(amp)*1.2))
         amp += 0.025
         
         /** 
