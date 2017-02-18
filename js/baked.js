@@ -14,10 +14,10 @@ function heroAnimation () {
     var banner2 = document.getElementById("fedBanner")
     var animating = false
     
-    banner1.addEventListener("mouseover", function () { animating = true })
-    banner2.addEventListener("mouseover", function () { animating = true })
-    banner1.addEventListener("mouseout", function () { animating = false })
-    banner2.addEventListener("mouseout", function () { animating = false })
+    banner1.addEventListener("mouseover", function () { animating = true  })
+    banner2.addEventListener("mouseover", function () { animating = true  })
+    banner1.addEventListener("mouseout",  function () { animating = false })
+    banner2.addEventListener("mouseout",  function () { animating = false })
     
     /* * * * * * * * * * * * * * * * * * 
      * CONTEXT
@@ -79,7 +79,7 @@ function heroAnimation () {
     gl.shaderSource(fragmentShader, [
         'precision highp float;',
         'void main (void) {',
-            'gl_FragColor = vec4(1, 1, 1, 1.0);',
+            'gl_FragColor = vec4(0, 0, 0, 1.0);',
         '}'
     ].join('\n'))
     gl.compileShader(fragmentShader)
@@ -224,13 +224,14 @@ function heroAnimation () {
         );
         gl.uniformMatrix4fv(viewLoc, gl.FALSE, view)
         camZ += 0.032
+        if (camZ > 60) { camZ = 0; console.log("wrap") }
         
         /** 
          * animate mesh
          */
-        gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), Math.abs(Math.sin(amp)*0.4))
-        if (animating) 
-            amp += 0.025; 
+        gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), amp)
+        if (animating && amp < 0.25) 
+            amp += 0.01; 
         else if (amp > 0)
             amp -= 0.01
         
