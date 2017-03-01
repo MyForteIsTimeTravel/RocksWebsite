@@ -5,90 +5,31 @@
         <meta charset="utf-8">
         <meta name="author"    content="Ryan Needham"/>
         <meta name="viewport"  content="width=device-width">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <!-- HTML -->
         <header>
-            <h1>Rocks</h1>
+            <ul class="navigationBar">
+                <li id="titleItem">
+                    <a href=""><strong>Baked Goods Studios</strong></a>
+                </li>
+            </ul>
         </header>
-        
-        <!-- 3D STUFF -->
-        <section id="canvasContainer"></section>
+        <section id="canvasContainer">
+            <section id="comingSoon">
+                <a href="">
+                    <h2>Rocks</h2>
+                    <p>coming 2017</p>
+                </a>
+            </section>
+        </section>
         <script src="js/Three.min.js"></script>
         <script src="js/input.js"></script>
         <script src="js/main.js"></script>
-        
-        <!-- Single Page Content -->
-        <section id="pageContent">
-            <section class="contentbox" id="example1">
-                <h2> coming 2017 for iOS</h2>
-                
-                <section id="description">
-                    <p>
-                        Rocks is a fast paced infinite runner with procedural music and gameplay. 
-                        Race through dangerous asteroid fields in your own custom ship and try 
-                        get your name on the leaderboard!
-                    </p>
-                </section>
-                
-                <section class="mainContent">
-                    <h3>customisable ships</h3>
-                    
-                    <img class="spriteShowcase" src="assets/sprite1.gif" alt="computer says no">
-                    <img class="spriteShowcase" src="assets/sprite2.gif" alt="computer says no">
-                    <img class="spriteShowcase" src="assets/sprite3.gif" alt="computer says no">
-                    
-                    <p class="contentDescription">
-                        Do you like space? Do you like ships? Well boy-oh-boy do we have something for you. How would
-                        you like your own vessel to sail the vaccum of space? sound good? too right it does. Customise
-                        your ship and leave your stamp on the universe by getting it immortalised atop the world wide
-                        leaderboard of totally awesome people who play our game.
-                    </p>
-                </section>
-                
-                <section class="mainContent">
-                    <h3>procedural soundtrack</h3>
-                    <!-- TO-DO: Custom Soundcloud Player (Awaiting Authentication ID from SC [two weeks]) -->
-                    <iframe id="musicPlayer" width="500px" height="20px" scrolling="no" 
-                            frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/303752071&amp;color=5f5f5f&amp;show_artwork=false&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false">
-                    </iframe>
-                    
-                    <p class="contentDescription">
-                        Did you know music is actually part of your 5 aday? no? well thats because it isn't. but that doesnt 
-                        mean fat tunes arent good for your bones and digestive system. That considered, sign yourself up for
-                        an injection of pure audible splender by throwing your shoes on, grabbing your empty wallet and taking 
-                        a stroll down to your local app store to exchange the pure air that populates your broke-ass wallet for
-                        some video-gameular fun featuring some sick beats.
-                    </p>
-                </section>
-
-                <section class="mainContent">
-                    <h3 id="signUpMessage">Sign up for the beta today!</h3>
-
-                    <form id="signUpForm" action="#" method="post">
-                        <ol>
-                            <li><label for="Name">Name:</label></li>
-                            <li><input class="textField" type="text" id="Name" placeholder="name"></li>
-                            <li><label for="Email">Email:</label></li>
-                            <li><input class="textField" type="text" id="Email" placeholder="email"></li>
-                            <li><input id="submitButton" type="submit"></li>
-                        </ol>
-                    </form>
-                </section>
-                
-                <section class="mainContent">
-                    <h3> looking for <a id="supportLink" href="https://github.com/MrDWilson/Rocks">support?</a></h3>
-                </section>
-            </section>
-        </section>
-        
-        <!-- Vanilla-y JavaScript -->
-        <script src="js/button.js"></script>
-        
         <footer>
-            <p>Ryan Needham</p>
             <p>2017</p>
         </footer>
     </body>
 </html>
+
