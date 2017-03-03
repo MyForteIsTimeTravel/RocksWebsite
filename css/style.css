@@ -236,3 +236,12 @@ footer {
     margin: 0.2em;
     cursor: pointer;
 }
+
+/** 
+ *  ABOUT STYLES
+ */
+#contentContainer {
+    text-align: center;
+    background-color: #202020;
+    margin-top: 4%;
+}
