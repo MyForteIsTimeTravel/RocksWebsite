@@ -61,8 +61,8 @@
         'uniform float amp;',
         'float rand(vec2 co) { return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);}',
         'void main (void) {',
-            'float lift = rand(vec2(vertPos.x, vertPos.z)) * amp;',
-            'gl_Position = projection * view * model * vec4(vertPos.x, vertPos.y + lift, vertPos.z, 1.0);',
+            //'float lift = rand(vec2(vertPos.x, vertPos.z)) * amp;',
+            'gl_Position = projection * view * model * vec4(vertPos.x, vertPos.y * amp, vertPos.z, 1.0);',
         '}'
     ].join('\n'))
     gl.compileShader(vertexShader)
@@ -100,38 +100,40 @@
     var landscape  = []
     var step       = 0.25
     
+    var simplex = new SimplexNoise();
+    
     // Data
     for (var x = startX; x < width; x += step * 2, xIndex++) {
         for (var z = height; z > endZ; z -= step * 2, zIndex--) {
             
             // TRIANGLE 1 VERT 1
             landscape.push(x - step)    // position x
-            landscape.push(0.0)         // position y
+            landscape.push(0.0 + simplex.noise2D(x - step, z + step))         // position y
             landscape.push(z + step)    // position z
 
             // TRIANGLE 1 VERT 2
             landscape.push(x - step)    // position x
-            landscape.push(0.0)         // position y
+            landscape.push(0.0 + simplex.noise2D(x - step, z - step))         // position y
             landscape.push(z - step)    // position z
             
             // TRIANGLE 1 VERT 3
             landscape.push(x + step)    // position x
-            landscape.push(0.0)         // position y
+            landscape.push(0.0 + simplex.noise2D(x + step, z + step))         // position y
             landscape.push(z + step)    // position z
             
             // TRIANGLE 2 VERT 1
             landscape.push(x + step)    // position x
-            landscape.push(0.0)         // position y
+            landscape.push(0.0 + simplex.noise2D(x + step, z + step))         // position y
             landscape.push(z + step)    // position z
             
             // TRIANGLE 2 VERT 2
             landscape.push(x - step)    // position x
-            landscape.push(0.0)         // position y
+            landscape.push(0.0 + simplex.noise2D(x - step, z - step))         // position y
             landscape.push(z - step)    // position z
             
             // TRIANGLE 2 VERT 3
             landscape.push(x + step)    // position x
-            landscape.push(0.0)         // position y
+            landscape.push(0.0 + simplex.noise2D(x + step, z - step))         // position y
             landscape.push(z - step)    // position z
         }
     }
