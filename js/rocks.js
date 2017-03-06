@@ -9,7 +9,6 @@
 (function () {
     document.body.style.opacity = 0.0
 
-
     const container = document.querySelector('#canvasContainer')
     var   width     = window.innerWidth
     var   height    = window.innerHeight * 0.95

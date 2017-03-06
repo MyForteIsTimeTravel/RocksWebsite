@@ -29,9 +29,11 @@
     gl.frontFace    (gl.CCW)
     gl.cullFace     (gl.BACK)
     
-    document.addEventListener("resize", function () {
+    window.addEventListener('resize', resizeCallback, false)
+    function resizeCallback () {
         canvas.width  = window.innerWidth
         canvas.height = window.innerHeight * 0.96
+        canvas.style.width = "100%"
         
         // projection transform
         var projection    = new Float32Array(16)
@@ -45,8 +47,8 @@
             42                            // far
         )
         
-        gl.uniformMatrix4fv(projectionLoc, gl.FALSE, projection)
-    })
+        gl.uniformMatrix4fv(projectionLoc, gl.FALSE, projection)   
+    }
 
     /* * * * * * * * * * * * * * * * * * 
      * SHADERS
@@ -222,6 +224,7 @@
         );
         gl.uniformMatrix4fv(viewLoc, gl.FALSE, view)
         camZ += 0.032
+        // reset when needed
         if (camZ > 60) { camZ = 0; console.log("wrap") }
         
         /** 
@@ -229,7 +232,7 @@
          */
         gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), amp)
         if (animating && amp < ampMax) 
-            amp += (ampMax - amp) * 0.1; 
+            amp += (ampMax - amp) * 0.05; 
         else if (amp > 0)
             amp -= 0.01
         

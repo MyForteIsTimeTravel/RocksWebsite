@@ -4,7 +4,7 @@
     color: #eee8d5;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     list-style: none;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 /*
 *:hover {
@@ -15,8 +15,8 @@
 body {
     width:  100%;
     height: 100%;
-    background: rgba(200, 200, 200, 1.0);
-    overflow: auto;
+    background: rgba(32, 32, 32, 1.0); 
+    overflow: hidden;
     opacity: 1;
 }
 
@@ -53,15 +53,9 @@ a {
     text-decoration: none;
 }
 
-video {
-    width: 95%;
-    margin: 1em;
-}
-
 .navigationBar {
     width: 100%;
     background:rgba(40, 40, 40, 1.0); 
-    position: absolute;
     padding: 0em;
 }
 
@@ -111,9 +105,9 @@ footer {
     background: rgba(40, 40, 40, 1.0);
 }
 
-
 #heroCanvas {
     width: 100%;
+    margin: 0;
 }
 
 #comingSoon {
@@ -161,18 +155,6 @@ footer {
     100% { background-color: rgba(91, 35, 51, 0.1);}
 }
 
-#pageContent {
-    width: 100%;
-    height: 100%;
-    background-color: #303030;
-    margin-bottom: 0.4%;
-    padding-top: 5%;
-    padding-bottom: 0.2em;
-    padding-left: none;
-    padding-right: none;
-    text-align: center;
-}
-
 @keyframes emphasize {
     0%   { background-color: #202020; color: #FFFFFF;}
     100% { background-color: #1B1B1B; color: #FFFFFF;}
@@ -183,58 +165,16 @@ footer {
     100% { background-color: #202020; color: #FFFFFF;}
 }
 
-.contentbox {
-    animation: de-emphasize 0.1s linear;
-    width: 80%;
-    height: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 0.6em;
-    margin-bottom: 0.6em;
-    padding: 0em 1em;
-    background-color: #202020;
-}
-
-.contentbox:hover {
-    animation: emphasize 0.1s linear;
-    background-color: #1B1B1B;
-    color: #FFFFFF;
-}
-
 /* HARD CODED VALUE: NEEDS BREAKPOINT */
-
-.contentDescription {
-    width: 36em;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-#description {
-    width: 22em;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.mainContent {
-    width: 80%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    align-content: center;
-}
-
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     
 }
 
 footer {
-    height: 5%;
-    margin: 0.2em;
+    height: 2%;
     cursor: pointer;
+    position: absolute;
 }
 
 /** 
@@ -243,5 +183,32 @@ footer {
 #contentContainer {
     text-align: center;
     background-color: #202020;
-    margin-top: 4%;
+}
+
+#canvasContainer {
+    position: absolute;
+    margin: 0;
+}
+
+.singlePageSection {
+    text-align: center;
+    position: absolute;
+    bottom: 30%;
+    width: 20em;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.singlePageSection a {
+    text-decoration: underline;
+}
+
+.singlePageSection a:hover {
+    color: rgba(200, 200, 200, 1.0);
+}
+
+.singlePageSection p {
+    z-index: 10;
 }
