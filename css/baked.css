@@ -132,8 +132,8 @@ footer {
     font-family: 'Raleway', sans-serif;
     text-align: center;
     color: rgba(238, 232, 213, 0.5);
-    padding-top: 0.25em;
-    padding-bottom: 0.5em;
+    margin-top: 0.1em;
+    margin-bottom:2em;
 }
 
 #comingSoon:hover {
@@ -287,4 +287,14 @@ footer {
 @keyframes youtube-out {
   0%     { color: #cd201f; }
   100%   { color: #eee8d5; }
+}
+
+#rocket {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    margin-left: 4%;
+    margin-right: 4%;
 }
