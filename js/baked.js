@@ -19,7 +19,7 @@
      * * * * * * * * * * * * * * * * * */
     var canvas      = document.getElementById("heroCanvas")
     canvas.width    = window.innerWidth
-    canvas.height   = window.innerHeight * 0.96
+    canvas.height   = window.innerHeight * 0.92
     
     var gl          = canvas.getContext('webgl')
     gl.clearColor   (0.21, 0.21, 0.21, 1.0)
@@ -31,23 +31,7 @@
     
     window.addEventListener('resize', resizeCallback, false)
     function resizeCallback () {
-        canvas.width  = window.innerWidth
-        canvas.height = window.innerHeight * 0.96
-        canvas.style.width = "100%"
-        
-        // projection transform
-        var projection    = new Float32Array(16)
-        var projectionLoc = gl.getUniformLocation(Shader, 'projection')
-        
-        mat4.perspective (
-            projection,
-            glMatrix.toRadian(60),        // fov
-            canvas.width / canvas.height, // aspect
-            0.01,                         // near
-            42                            // far
-        )
-        
-        gl.uniformMatrix4fv(projectionLoc, gl.FALSE, projection)   
+        location.reload();
     }
 
     /* * * * * * * * * * * * * * * * * * 

@@ -4,7 +4,7 @@
     color: #eee8d5;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     list-style: none;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 /*
 *:hover {
@@ -173,8 +173,10 @@ footer {
 
 footer {
     height: 2%;
+    margin: 0;
     cursor: pointer;
     position: absolute;
+    bottom: 0;
 }
 
 /** 
@@ -211,4 +213,78 @@ footer {
 
 .singlePageSection p {
     z-index: 10;
+}
+
+.singlePageSection p:hover {
+    cursor: default;
+}
+
+#social {
+    bottom: 16%;
+}
+
+/** FACEBOOK BUTTON */
+#fb {
+    color: #eee8d5;
+    margin: 5%;
+    animation: facebook-out 0.5s linear;
+}
+
+#fb:hover { 
+    color: #3B5998; 
+    animation: facebook-in 0.5s linear; 
+    cursor: pointer;
+}
+
+@keyframes facebook-in {
+  0%   { color: #eee8d5; }
+  100% { color: #3B5998; }
+}
+@keyframes facebook-out {
+  0%     { color: #3B5998; }
+  100%   { color: #eee8d5; }
+}
+
+/** TWITTER BUTTON */
+#tw {
+    color: #eee8d5;
+    margin: 5%;
+    animation: twitter-out 0.5s linear;
+}
+
+#tw:hover { 
+    color: #1dcaff; 
+    animation: twitter-in 0.5s linear; 
+    cursor: pointer;
+}
+
+@keyframes twitter-in {
+  0%   { color: #eee8d5; }
+  100% { color: #1dcaff; }
+}
+@keyframes twitter-out {
+  0%     { color: #1dcaff; }
+  100%   { color: #eee8d5; }
+}
+
+/** YOUTUBE BUTTON */
+#yt {
+    color: #eee8d5;
+    margin: 5%;
+    animation: youtube-out 0.5s linear;
+}
+
+#yt:hover { 
+    color: #cd201f; 
+    animation: youtube-in 0.5s linear; 
+    cursor: pointer;
+}
+
+@keyframes youtube-in {
+  0%   { color: #eee8d5; }
+  100% { color: #cd201f; }
+}
+@keyframes youtube-out {
+  0%     { color: #cd201f; }
+  100%   { color: #eee8d5; }
 }
