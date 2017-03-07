@@ -227,12 +227,12 @@ footer {
 #fb {
     color: #eee8d5;
     margin: 5%;
-    animation: facebook-out 0.5s linear;
+    animation: facebook-out 0.34s linear;
 }
 
 #fb:hover { 
     color: #3B5998; 
-    animation: facebook-in 0.5s linear; 
+    animation: facebook-in 0.34s linear; 
     cursor: pointer;
 }
 
@@ -249,12 +249,12 @@ footer {
 #tw {
     color: #eee8d5;
     margin: 5%;
-    animation: twitter-out 0.5s linear;
+    animation: twitter-out 0.34s linear;
 }
 
 #tw:hover { 
     color: #1dcaff; 
-    animation: twitter-in 0.5s linear; 
+    animation: twitter-in 0.34s linear; 
     cursor: pointer;
 }
 
@@ -271,12 +271,12 @@ footer {
 #yt {
     color: #eee8d5;
     margin: 5%;
-    animation: youtube-out 0.5s linear;
+    animation: youtube-out 0.34s linear;
 }
 
 #yt:hover { 
     color: #cd201f; 
-    animation: youtube-in 0.5s linear; 
+    animation: youtube-in 0.34s linear; 
     cursor: pointer;
 }
 
@@ -290,11 +290,11 @@ footer {
 }
 
 #rocket {
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    transform: rotate(270deg);
+    -webkit-transform:  rotate(270deg);
+    -moz-transform:     rotate(270deg);
+    -ms-transform:      rotate(270deg);
+    -o-transform:       rotate(270deg);
+    transform:          rotate(270deg);
     margin-left: 4%;
     margin-right: 4%;
 }
