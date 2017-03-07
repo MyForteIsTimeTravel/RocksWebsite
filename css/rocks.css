@@ -133,20 +133,78 @@ footer {
     cursor: default;
 }
 
-/* HARD CODED VALUE: NEEDS BREAKPOINT */
+/** PHONES */
 @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
+    .singlePageSection {
+        padding: 1em;
+    }
+    .singlePageSection p {
+        text-align: left;
+        margin-top: 0.6em;
+    }
+
+    #trailer {
+        margin-top: 0.6em;
+    }
+        
+    #signup {
+        align-content: center;
+        text-align: center;
+    }
     
+    #signup p {
+        text-align: center;
+        align-content: center;
+        margin: 1em;
+        padding: 0.5em;
+    }
 }
 
-.singlePageSection {
-    padding: 1em;
-}
-.singlePageSection p {
-    text-align: left;
-    margin-top: 0.6em;
+/** OTHER */
+@media only screen and (min-width: 768px) {
+    .singlePageSection {
+        background-color: rgb(32, 32, 32);
+        padding: 2em;
+        margin: 4em;
+    }
+    .singlePageSection p {
+        text-align: left;
+        margin-top: 0.6em;
+    }
+
+    #trailer {
+        margin-top: 0.6em;
+    }
+    
+    #signup {
+        align-content: center;
+        text-align: center;
+    }
+    
+    #signup p {
+        text-align: center;
+        align-content: center;
+        margin: 1em;
+        padding: 0.5em;
+    }
 }
 
-#trailer {
-    margin-top: 0.6em;
+#down {
+    text-align: center;
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+}
+
+#arrow       { color: #eee8d5; animation: arrow-unhover 0.3s linear; }
+#arrow:hover { color: #999999; animation: arrow-hover   0.3s linear; }
+
+@keyframes arrow-hover {
+    0%   { color: #eee8d5; }
+    100% { color: #999999; }
+}
+
+@keyframes arrow-unhover {
+    0%   { color: #999999; }
+    100% { color: #eee8d5; }
 }

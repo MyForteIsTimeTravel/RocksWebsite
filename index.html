@@ -5,7 +5,9 @@
         <meta charset="utf-8">
         <meta name="author"    content="Ryan Needham"/>
         <meta name="viewport"  content="width=device-width">
-        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="css/rocks.css">
     </head>
     <body>
@@ -26,6 +28,12 @@
                     <h2>Rocks</h2>
                     <p>coming 2017 for iOS</p>
             </section>
+            
+            <section id="down">
+                <a href="#about">
+                    <i id="arrow" class="fa fa-chevron-down fa-3x" aria-hidden="true"></i>
+                </a>
+            </section>
         </section>
         <script src="js/Three.min.js"></script>
         <script src="js/input.js"></script>
@@ -34,7 +42,6 @@
         <!-- Single Page Content -->
         <section class="singlePageSection" id="about">
             <h2>about rocks</h2>
-            
             <p>
                 Rocks is a fast paced infinite runner set in the year 3084. Mankind has escaped its native
                 solar-system in search of new resources and new worlds. Due to the lack of 'shit to do' in 
@@ -46,20 +53,20 @@
         <section class="singlePageSection" id="trailer">
             <h2>gameplay trailer</h2>
             
-            <iframe id="trailer" width="100%" src="https://www.youtube.com/embed/wOs2BsIRpNk" frameborder="0" allowfullscreen></iframe>
+            <iframe id="trailer" width="100%" src="https://www.youtube.com/embed/wOs2BsIRpNk?modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
         </section>
         
         <section class="singlePageSection" id="signup">
             <h2>join the beta!</h2>
-            
-            <form action=""> <!-- link php here -->
-                <input type="text" name="name"  value="name">
-                <input type="text" name="email" value="email">
-                <input type="submit" value="Submit">
+            <form action="" method="post"> <!-- link php here -->
+                <p>name:  <input type="text" name="name"  value="name"></p>
+                <p>email: <input type="text" name="email" value="email"></p>
+                <input type="submit" name="submit" value="Submit">
             </form>
         </section>
         
         <footer>
+            <p>MyForteIsTimeTravel</p>
             <p>2017</p>
         </footer>
     </body>
