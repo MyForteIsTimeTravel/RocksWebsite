@@ -137,9 +137,11 @@ footer {
 @media only screen and (max-width: 768px) {
     .singlePageSection {
         padding: 1em;
+        align-content: center;
+        text-align: center;
     }
     .singlePageSection p {
-        text-align: left;
+        text-align: justify;
         margin-top: 0.6em;
     }
 
@@ -158,22 +160,31 @@ footer {
         margin: 1em;
         padding: 0.5em;
     }
+    
+    .sbs {
+        width: 45%;
+        height: 25%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 /** OTHER */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) /*and (max-width: 1080px) */ {
     .singlePageSection {
+        align-content: center;
         background-color: rgb(32, 32, 32);
         padding: 2em;
         margin: 4em;
-    }
-    .singlePageSection p {
-        text-align: left;
-        margin-top: 0.6em;
+        text-align: justify;
     }
 
     #trailer {
         margin-top: 0.6em;
+    }
+    
+    #trailerVid {
+        width: 100%;
     }
     
     #signup {
@@ -187,6 +198,25 @@ footer {
         margin: 1em;
         padding: 0.5em;
     }
+    
+    .sbs {
+        float: left;
+        width: 25%;
+        height: 10%;
+        padding: 1em;
+        
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    #sbsContainer p {
+        padding: 1em 0;
+    }
+}
+
+/** BIGGER THAN HD */
+@media only screen and (min-width: 1080px) {
+
 }
 
 #down {

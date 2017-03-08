@@ -10,6 +10,7 @@
      * * * * * * * * * * * * * * * * * */
     var banner1 = document.getElementById("comingSoon")
     var animating = false
+    var automated = false
     
     banner1.addEventListener("mouseover", function () { animating = true  })
     banner1.addEventListener("mouseout",  function () { animating = false })
@@ -219,6 +220,16 @@
             amp += (ampMax - amp) * 0.05; 
         else if (amp > 0)
             amp -= 0.01
+            
+        if (window.innerWidth < 760) {
+            automated = true;
+        } else {
+            automated = false;
+        }
+        
+        if (automated) {
+            //amp += Math.sin((ampMax - amp) * 0.05)
+        }
         
         /** 
          * render
