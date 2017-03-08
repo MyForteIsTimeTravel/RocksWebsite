@@ -61,7 +61,8 @@ a {
 
 .navigationBar li {
     animation: darken 0.25s linear;
-    background: rgba(40, 40, 40, 1.0); 
+    background: #eee8d5;
+    color:      #212121;
     float: right;
     display: inline-block;
     margin: 0;
@@ -71,19 +72,19 @@ a {
 
 .navigationBar li:hover {
     animation: lightup 0.25s linear;
-    background: rgba(91, 35, 51, 1.0);
+    background-color: #212121;
     cursor: pointer;
 }
 
 @keyframes lightup {
-    0%   { background-color: rgba(40, 40, 40, 1.0); }
-    100% { background-color: rgba(91, 35, 51, 1.0); }
+    0%   { background-color: #eee8d5; }
+    100% { background-color:      #212121; }
     
 }
 
 @keyframes darken {
-    0%   { background-color: rgba(91, 35, 51, 1.0); }
-    100% { background-color: rgba(40, 40, 40, 1.0); }
+    0%   { background-color:      #212121; }
+    100% { background-color: #eee8d5; }
 }
 
 #titleItem {
@@ -92,6 +93,11 @@ a {
 
 #titleItem strong { 
     font-family: "Courier New", Courier, monospace;
+    color: #212121;
+}
+
+.navigationBar:hover strong {
+    color: #eee8d5;
 }
 
 footer {
@@ -114,7 +120,7 @@ footer {
     background: rgba(91, 35, 51, 0.1);
     animation: Deemphasize 0.2s linear;
     position: absolute;
-    width: 100%;
+    display: block;
     bottom: 45%;
 }
 

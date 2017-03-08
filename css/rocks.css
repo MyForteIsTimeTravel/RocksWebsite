@@ -37,6 +37,10 @@ p {
     font-size: 0.8em;
 }
 
+p:hover {
+    cursor: default;
+}
+
 a {
     text-decoration: none;
 }
@@ -133,6 +137,13 @@ footer {
     cursor: default;
 }
 
+#musicPlayer {
+    width: 100%;
+    margin: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /** PHONES */
 @media only screen and (max-width: 768px) {
     .singlePageSection {
@@ -199,18 +210,15 @@ footer {
         padding: 0.5em;
     }
     
-    .sbs {
-        float: left;
-        width: 25%;
-        height: 10%;
-        padding: 1em;
-        
-        margin-left: auto;
-        margin-right: auto;
+    #sbsContainer {
+        align-content: center;
     }
     
-    #sbsContainer p {
-        padding: 1em 0;
+    .sbs {
+        display: block;
+        float: left;
+        width: 30%;
+        margin: 1em 10%;
     }
 }
 

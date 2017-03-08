@@ -228,13 +228,18 @@
         }
         
         if (automated) {
-            //amp += Math.sin((ampMax - amp) * 0.05)
+            amp += 0.025
+            gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), Math.cos(amp)*0.5)
         }
         
         /** 
          * render
          */
-        gl.drawArrays(gl.LINES, 0, landscape.length / 3)
+        if (automated) {
+            gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
+        } else {
+            gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
+        }
         
         requestAnimationFrame(update)
     }
