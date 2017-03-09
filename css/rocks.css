@@ -151,6 +151,7 @@ footer {
         align-content: center;
         text-align: center;
     }
+    
     .singlePageSection p {
         text-align: justify;
         margin-top: 0.6em;
@@ -198,7 +199,7 @@ footer {
         margin: 4em;
         text-align: justify;
     }
-
+    
     #trailer {
         margin-top: 0.6em;
     }

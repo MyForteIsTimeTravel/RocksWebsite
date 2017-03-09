@@ -188,6 +188,7 @@ footer {
     cursor: pointer;
     position: absolute;
     bottom: 0;
+    padding-bottom: 1em;
 }
 
 /** 
