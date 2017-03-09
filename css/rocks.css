@@ -138,12 +138,6 @@ footer {
     cursor: default;
 }
 
-#musicPlayer {
-    width: 45%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 /** PHONES */
 @media only screen and (max-width: 768px) {
     .singlePageSection {
@@ -187,6 +181,10 @@ footer {
     .sbs#screen2 {
         width: 0%;
         height: 0%;
+    }
+    
+    #musicPlayer {
+        width: 45%;
     }
 }
 
@@ -234,6 +232,11 @@ footer {
         width: 30%;
         margin: 1em 1.5%;
     }
+    
+    #musicPlayer {
+        width: 50%;
+        margin-left: 25%;
+    }
 }
 
 /** BIGGER THAN HD */
@@ -250,27 +253,25 @@ footer {
 
 #arrow       { color: #eee8d5; animation: arrow-unhover 0.3s linear; }
 #arrow:hover { color: #999999; animation: arrow-hover   0.3s linear; cursor: pointer;}
-
-@keyframes arrow-hover {
-    0%   { color: #eee8d5; }
-    100% { color: #999999; }
-}
-
-@keyframes arrow-unhover {
-    0%   { color: #999999; }
-    100% { color: #eee8d5; }
-}
+@keyframes arrow-hover   { 0% { color: #eee8d5; } 100% { color: #999999; } }
+@keyframes arrow-unhover { 0% { color: #999999; } 100% { color: #eee8d5; } }
 
 .button {
-    background-color: #212121; /* Green */
+    background-color: #212121;
     border: none;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 1em;
+    animation: button-unhover 1s linear;
 }
 
 .button:hover {
-    background-color: #161616
+    cursor: pointer;
+    background-color: #161616;
+    animation: button-hover 1s linear;
 }
+
+@keyframes button-hover   { 0% { background-color: #212121; } 100% { background-color: #161616; } }
+@keyframes button-unhover { 0% { background-color: #161616; } 100% { background-color: #212121; } }
