@@ -69,6 +69,7 @@ a {
     cursor: pointer;
 }
 
+
 @keyframes lightup {
     0%   { background-color: rgba(40, 40, 40, 1.0); }
     100% { background-color: rgba(91, 35, 51, 1.0); }
@@ -156,7 +157,7 @@ footer {
     }
     
     #trailerVid {
-        width: 45%;
+        width: 60%;
     }
         
     #signup {
@@ -172,7 +173,7 @@ footer {
     }
     
     .sbs {
-        width: 45%;
+        width: 60%;
         height: 25%;
         margin-left: auto;
         margin-right: auto;
@@ -184,7 +185,8 @@ footer {
     }
     
     #musicPlayer {
-        width: 45%;
+        height: 20px;
+        width: 60%;
     }
 }
 
@@ -234,14 +236,22 @@ footer {
     }
     
     #musicPlayer {
-        width: 50%;
-        margin-left: 25%;
+        width: 100%;
+        margin-left: 0;
     }
 }
 
 /** BIGGER THAN HD */
 @media only screen and (min-width: 1080px) {
 
+}
+
+#social {
+    text-align: center;
+}
+
+#social a {
+    margin: 10%;
 }
 
 #down {
@@ -275,3 +285,48 @@ footer {
 
 @keyframes button-hover   { 0% { background-color: #212121; } 100% { background-color: #161616; } }
 @keyframes button-unhover { 0% { background-color: #161616; } 100% { background-color: #212121; } }
+
+/** FACEBOOK BUTTON */
+@keyframes facebook-in  { 0% { color: #3B5998; } 100% { color: #eee8d5; } }
+@keyframes facebook-out { 0% { color: #eee8d5; } 100% { color: #3B5998;} }
+
+#fb {
+        color: #3B5998; 
+    animation: facebook-out 0.34s linear;
+}
+
+#fb:hover { 
+    color: #eee8d5;
+    animation: facebook-in 0.34s linear; 
+    cursor: pointer;
+}
+
+/** TWITTER BUTTON */
+@keyframes twitter-in  { 100% { color: #eee8d5; } 0% { color: #1dcaff; } }
+@keyframes twitter-out { 100% { color: #1dcaff; } 0% { color: #eee8d5; } }
+
+#tw {
+    color: #1dcaff; 
+    animation: twitter-out 0.34s linear;
+}
+
+#tw:hover { 
+    color: #eee8d5;
+    animation: twitter-in 0.34s linear; 
+    cursor: pointer;
+}
+
+/** YOUTUBE BUTTON */
+#yt {
+    color: #cd201f; 
+    animation: youtube-out 0.34s linear;
+}
+
+#yt:hover { 
+    color: #eee8d5;
+    animation: youtube-in 0.34s linear; 
+    cursor: pointer;
+}
+
+@keyframes youtube-in  { 100% { color: #eee8d5; } 0% { color: #cd201f; } }
+@keyframes youtube-out { 100% { color: #cd201f; } 0% { color: #eee8d5; } }

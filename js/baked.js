@@ -8,7 +8,7 @@
     /* * * * * * * * * * * * * * * * * *
      * Control
      * * * * * * * * * * * * * * * * * */
-    var banner1 = document.getElementById("comingSoon")
+    var banner1   = document.getElementById("comingSoon")
     var animating = false
     var automated = false
     
@@ -32,48 +32,48 @@
     
     window.addEventListener('resize', resizeCallback, false)
     function resizeCallback () {
+        // just reload to adjust
         location.reload();
     }
 
     /* * * * * * * * * * * * * * * * * * 
      * SHADERS
      * * * * * * * * * * * * * * * * * */
-    var vertexShader = gl.createShader(gl.VERTEX_SHADER)
-    gl.shaderSource(vertexShader, [
+    var vert = gl.createShader(gl.VERTEX_SHADER)
+    gl.shaderSource(vert, [
         'attribute vec3 vertPos;',
         'varying vec3 fragCol;',
         'uniform mat4 model;',
         'uniform mat4 view;',
         'uniform mat4 projection;',
         'uniform float amp;',
-        'float rand(vec2 co) { return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);}',
+        'float rand(vec2 co) { return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453); }',
         'void main (void) {',
-            //'float lift = rand(vec2(vertPos.x, vertPos.z)) * amp;',
             'gl_Position = projection * view * model * vec4(vertPos.x, vertPos.y * amp, vertPos.z, 1.0);',
         '}'
     ].join('\n'))
-    gl.compileShader(vertexShader)
-    if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
-        console.error('ERROR compiling vertex shader!', gl.getShaderInfoLog(vertexShader))
+    gl.compileShader(vert)
+    if (!gl.getShaderParameter(vert, gl.COMPILE_STATUS)) {
+        console.error('ERROR compiling vertex shader: ', gl.getShaderInfoLog(vert))
     }
 
-    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER)
-    gl.shaderSource(fragmentShader, [
+    var frag = gl.createShader(gl.FRAGMENT_SHADER)
+    gl.shaderSource(frag, [
         'precision highp float;',
         'void main (void) {',
             'gl_FragColor = vec4(0, 0, 0, 1.0);',
         '}'
     ].join('\n'))
-    gl.compileShader(fragmentShader)
-    if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-        console.error('ERROR compiling fragment shader!', gl.getShaderInfoLog(fragmentShader))
+    gl.compileShader(frag)
+    if (!gl.getShaderParameter(frag, gl.COMPILE_STATUS)) {
+        console.error('ERROR compiling fragment shader: ', gl.getShaderInfoLog(frag))
     }
 
     // Program
-    var Shader = gl.createProgram()
-    gl.attachShader (Shader, vertexShader)
-    gl.attachShader (Shader, fragmentShader)
-    gl.linkProgram  (Shader)
+    var shader = gl.createProgram()
+    gl.attachShader (shader, vert)
+    gl.attachShader (shader, frag)
+    gl.linkProgram  (shader)
 
     /* * * * * * * * * * * * * * * * * * 
      * GRID / FLOOR MESH
@@ -117,18 +117,18 @@
 	gl.bindBuffer(gl.ARRAY_BUFFER, landscapeVBO)
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(landscape), gl.STATIC_DRAW)
 
-	var positionAttribLocation = gl.getAttribLocation(Shader, 'vertPos')
+	var positionAttribLocation = gl.getAttribLocation(shader, 'vertPos')
 	gl.vertexAttribPointer (positionAttribLocation, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0)
 	gl.enableVertexAttribArray(positionAttribLocation)
 
     /* * * * * * * * * * * * * * * * * * 
      * TRANSFORMATION MATRICES
      * * * * * * * * * * * * * * * * * */
-    gl.useProgram(Shader)
+    gl.useProgram(shader)
     
     // view transform
     var view    = new Float32Array(16)
-    var viewLoc = gl.getUniformLocation(Shader, 'view')
+    var viewLoc = gl.getUniformLocation(shader, 'view')
     mat4.lookAt(
         view, 
         [0, 2, -5],    // position 
@@ -138,7 +138,7 @@
 
     // projection transform
     var projection    = new Float32Array(16)
-    var projectionLoc = gl.getUniformLocation(Shader, 'projection')
+    var projectionLoc = gl.getUniformLocation(shader, 'projection')
     mat4.perspective(
         projection,
         glMatrix.toRadian(60),        // fov
@@ -162,16 +162,12 @@
     mat4.identity(identity)
 
     function update () {
-        // clear
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
-
-        // bind shader
-        gl.useProgram(Shader)
+        gl.useProgram(shader)
 
         /** 
-         * model transform 
+         *  Model Transform 
          */
-        var modelLoc = gl.getUniformLocation(Shader, 'model')
         var model    = new Float32Array(16)
         var xRot     = new Float32Array(16)
         var zRot     = new Float32Array(16)
@@ -183,42 +179,42 @@
         mat4.mul    (model, model, scale)
 
         // pass uniforms to GPU
-        gl.uniformMatrix4fv(modelLoc, gl.FALSE, model)
+        gl.uniformMatrix4fv(gl.getUniformLocation(shader, 'model'), gl.FALSE, model)
 
         /**
-         * move camera forward
+         *  View Transform
+         *  
+         *  move camera forward and 
+         *  reset when needed
          */
+        if (camZ > 60) camZ = 0;
+        camZ += 0.032
         mat4.lookAt(
             view, 
-            [0, 1, camZ], // position 
+            [0, 1, camZ],  // position 
             [0, 0, 1000],  // forward
-            [0, 1, 0]  // up
+            [0, 1, 0]      // up
         );
+        
+        // pass to gpu
         gl.uniformMatrix4fv(viewLoc, gl.FALSE, view)
-        camZ += 0.032
-        // reset when needed
-        if (camZ > 60) { camZ = 0; console.log("wrap") }
         
         /** 
-         * animate mesh
+         * Animation Data
          */
-        gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), amp)
         if (animating && amp < ampMax) amp += (ampMax - amp) * 0.05; 
         else if (amp > 0) amp -= 0.01
-            
         if (window.innerWidth < 760) automated = true;
         else automated = false;
-        
         if (automated) {
             amp += 0.025
-            gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), Math.cos(amp)*0.5)
+            gl.uniform1f(gl.getUniformLocation(shader, 'amp'), Math.cos(amp)*0.5)
+        } else {
+            gl.uniform1f(gl.getUniformLocation(shader, 'amp'), amp)   
         }
         
-        /** 
-         * render
-         */
-        if (automated) gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
-        else gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
+        /** render */
+        gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
         requestAnimationFrame(update)
     }
     requestAnimationFrame(update);   

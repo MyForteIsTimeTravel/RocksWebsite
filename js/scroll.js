@@ -20,9 +20,5 @@
         requestAnimationFrame(scrollFrame)
     }
     
-    var scrollUp = function (e) {
-        
-    }
-    
     document.getElementById("down").addEventListener("click", scrollDown)
 }())

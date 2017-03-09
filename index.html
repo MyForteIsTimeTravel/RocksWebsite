@@ -16,23 +16,20 @@
                 <a href="baked.html"><li id="titleItem"><strong>Baked Goods Studios</strong></li></a>
             </ul>
         </header>
-        
-        <!-- Hero Animation -->
-        <section id="canvasContainer">
+        <section id="canvasContainer">        
+            <!-- Hero Animation, canvas inserted in js -->
             <section id="comingSoon">
                 <h2>Rocks</h2>
                 <p>coming 2017 for iOS</p>
             </section>
-            
+            <!-- "scroll down" button -->
             <section id="down">
                 <i id="arrow" class="fa fa-chevron-down fa-3x" aria-hidden="true"></i>
             </section>
         </section>
-        
-        <!-- Single Page Content -->
+        <!-- about -->
         <section class="singlePageSection" id="about">
             <h2>about rocks</h2>
-        
             <section id="sbsContainer">
                 <img class="sbs" id="screen1" src="assets/screen_a.gif" alt="computer says no">    
                 <p class="sbs">
@@ -45,23 +42,21 @@
                 <img class="sbs" id="screen2" src="assets/screen_b.gif" alt="computer says no">
             </section>
         </section>
-        
+        <!-- trailer -->
         <section class="singlePageSection" id="trailer">
             <h2>gameplay trailer</h2>
-            
             <iframe id="trailerVid" frameborder="0" allowfullscreen 
                     src="//www.youtube.com/embed/wOs2BsIRpNk?modestbranding=1&autohide=1&showinfo=0&controls=0">
             </iframe>
         </section>
-        
+        <!-- soundtrack -->
         <section class="singlePageSection" id="music">
-            <h2>soundtrack</h2>
-            
+            <h2>soundtrack</h2>            
             <iframe id="musicPlayer" scrolling="no" frameborder="no" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/303752071&amp;color=212121&amp;show_artwork=false&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false">
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/311582358&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false">
             </iframe>
         </section>
-        
+        <!-- sign up -->
         <section class="singlePageSection" id="signup">
             <h2>join the beta!</h2>
             <form action="" method="post"> <!-- link php here -->
@@ -70,17 +65,21 @@
                 <input class="button" type="submit" name="submit" value="Submit">
             </form>
         </section>
-        
+        <!-- social -->
+        <section class="singlePageSection" id="social">
+            <h2>social media</h2>  
+            <a href="https://www.facebook.com"><i class="fa fa-facebook-square fa-3x" id="fb" aria-hidden="true"></i></a>
+            <a href="https://www.twitter.com"><i class="fa fa-twitter-square  fa-3x" id="tw" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/channel/UCA9_C42V_VDljBlbRJ-L0Tw"><i class="fa fa-youtube-square  fa-3x" id="yt" aria-hidden="true"></i></a>
+        </section>
         <footer>
             <p>MyForteIsTimeTravel</p>
             <p>2017</p>
         </footer>
     </body>
-    
     <script src="js/Three.min.js"></script>
     <script src="js/scroll.js"></script>
     <script src="js/input.js"></script>
-    <script src="js/rocks.js"></script>
-        
+    <script src="js/rocks.js"></script>        
 </html>
 

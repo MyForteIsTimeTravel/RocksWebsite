@@ -48,7 +48,6 @@
 
     const scene      = new THREE.Scene()
     scene.background = new THREE.Color(0x202020)
-    //scene.background = new THREE.Color(0xFFFFFF)
     scene.add(camera)
 
     camera.position.z = 5
@@ -93,7 +92,7 @@
     /** 
      *  This cannot be allowed to run asynchronously with the rest of the program
      *  or the render calls will throw null errors while this gets dragged off
-     *  disk
+     *  disk. Therefore the remainder of the program is run in a callback
      */
     loader.load('assets/asteroid.json', function (geometry) {
         var material       = new THREE.MeshLambertMaterial({color:0xc19170});
@@ -109,7 +108,7 @@
         var stars      = new Array()
         var starSpeeds = new Array()
 
-        // one way
+        /** generate starry backdrop */
         for (var i = 0; i < starCount; i++) {
             const obj = new THREE.Mesh(
                 new THREE.SphereGeometry( 0.2, 4, 4 ),            // Vertex Shader
@@ -153,32 +152,30 @@
         function update () {    
             if (!paused) {
                 updateTick()
-                updateInput()
 
-                // fade in
+                // start showing the webpage now everything is ready
                 document.body.style.opacity = 1.0;
 
-                // Pan the camera around the asteroid
+                // Pan the camera around the asteroid based on mouse movements
                 camera.position.x = (Math.sin((tick + (mouseX*0.005))/spin) * radius)
                 camera.position.z = (Math.cos((tick + (mouseY*0.005))/spin) * radius)
                 camera.lookAt(scene.position)
 
+                // drag stars down
                 for (var i = 0; i < starCount; i++) {
                     if (stars[i].position.y > -200) { stars[i].position.y -= starSpeeds[i] }
                     else                            { stars[i].position.y = 180 }
                 }
 
-
+                // shake asteroid lightly to suggest speed
                 if (Math.random() > 0.5) { mesh.position.x += Math.random() * 0.001 }
                 else                     { mesh.position.x -= Math.random() * 0.001 }
                 mesh.rotation.z += 0.01;
                 mesh.rotation.y += 0.01;   
 
-                // Draw the scene
+                // draw the scene
                 renderer.render(scene, camera)
             }
-
-            // see you again soon
             requestAnimationFrame(update)
         }
 
