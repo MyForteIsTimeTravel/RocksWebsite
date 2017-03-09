@@ -3,12 +3,13 @@
  *
  *  Ryan Needham
  * * * * * * * * * * * * * * * * * * * * */
+var mouseX = 0
+var mouseY = 0
+
 (function () {
     var onCanvas = false
     var canvas = document.getElementById("canvasContainer")
 
-    var mouseX = 0
-    var mouseY = 0
     var middleX = window.innerWidth / 2
     var middleY = window.innerHeight / 2
 
