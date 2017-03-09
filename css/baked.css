@@ -32,16 +32,18 @@ h1 {
 h2 {
     color: #363636;
     padding: 1em;
+    margin: 2em;
 }
 
 h3 {
     font-family: 'Raleway', sans-serif;
     color: #888888;
     padding: 1em;
+    margin: 2em;
 }
 
 h4 {
-    font-size: 1emem;
+    font-size: 1em;
     display: inline;
 }
 
@@ -72,18 +74,18 @@ a {
 
 .navigationBar li:hover {
     animation: lightup 0.25s linear;
-    background-color: #212121;
+    background-color: #ccc6b3;
     cursor: pointer;
 }
 
 @keyframes lightup {
     0%   { background-color: #eee8d5; }
-    100% { background-color:      #212121; }
+    100% { background-color: #ccc6b3; }
     
 }
 
 @keyframes darken {
-    0%   { background-color:      #212121; }
+    0%   { background-color: #ccc6b3; }
     100% { background-color: #eee8d5; }
 }
 
@@ -117,8 +119,8 @@ footer {
 }
 
 #comingSoon {
-    background-image: url("../assets/backing.png");
-    animation: Deemphasize 0.2s linear;
+    background: #202020;
+    animation: de-emphasize 0.2s linear;
     position: absolute;
     display: block;
     bottom: 45%;
@@ -146,8 +148,9 @@ footer {
 }
 
 #comingSoon:hover {
-    background: rgba(91, 35, 51, 0.5);
-    animation: Emphasize 0.2s linear;
+    background-color: #1B1B1B; 
+    color: #FFFFFF;
+    animation: emphasize 0.2s linear;
 }
 
 #comingSoon:hover h2 {
@@ -233,6 +236,9 @@ footer {
 }
 
 /** FACEBOOK BUTTON */
+@keyframes facebook-in  { 0% { color: #eee8d5; } 100% { color: #3B5998; } }
+@keyframes facebook-out { 0% { color: #3B5998; } 100% { color: #eee8d5; } }
+
 #fb {
     color: #eee8d5;
     margin: 5%;
@@ -245,16 +251,10 @@ footer {
     cursor: pointer;
 }
 
-@keyframes facebook-in {
-  0%   { color: #eee8d5; }
-  100% { color: #3B5998; }
-}
-@keyframes facebook-out {
-  0%     { color: #3B5998; }
-  100%   { color: #eee8d5; }
-}
-
 /** TWITTER BUTTON */
+@keyframes twitter-in  { 0% { color: #eee8d5; } 100% { color: #1dcaff; } }
+@keyframes twitter-out { 0% { color: #1dcaff; } 100% { color: #eee8d5; } }
+
 #tw {
     color: #eee8d5;
     margin: 5%;
@@ -265,15 +265,6 @@ footer {
     color: #1dcaff; 
     animation: twitter-in 0.34s linear; 
     cursor: pointer;
-}
-
-@keyframes twitter-in {
-  0%   { color: #eee8d5; }
-  100% { color: #1dcaff; }
-}
-@keyframes twitter-out {
-  0%     { color: #1dcaff; }
-  100%   { color: #eee8d5; }
 }
 
 /** YOUTUBE BUTTON */
@@ -289,14 +280,8 @@ footer {
     cursor: pointer;
 }
 
-@keyframes youtube-in {
-  0%   { color: #eee8d5; }
-  100% { color: #cd201f; }
-}
-@keyframes youtube-out {
-  0%     { color: #cd201f; }
-  100%   { color: #eee8d5; }
-}
+@keyframes youtube-in  { 0% { color: #eee8d5; } 100% { color: #cd201f; } }
+@keyframes youtube-out { 0% { color: #cd201f; } 100% { color: #eee8d5; } }
 
 #rocket {
     -webkit-transform:  rotate(270deg);
@@ -314,6 +299,5 @@ footer {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-        
     }
 }

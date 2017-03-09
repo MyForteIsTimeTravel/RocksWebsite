@@ -20,6 +20,7 @@ h1 {
 
 h2 {
     color: #363636;
+    margin: 1em;
 }
 
 h3 {
@@ -109,7 +110,7 @@ footer {
     background: rgba(91, 35, 51, 0.0);
     position: absolute;
     width: 100%;
-    bottom: 45%;
+    bottom: 50%;
 }
 
 #comingSoon h2 {

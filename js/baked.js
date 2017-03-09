@@ -144,7 +144,7 @@
         glMatrix.toRadian(60),        // fov
         canvas.width / canvas.height, // aspect
         0.01,                         // near
-        10                            // far
+        25                            // far
     )
 
     gl.uniformMatrix4fv(viewLoc, gl.FALSE, view)
