@@ -1,18 +1,28 @@
-/* * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * *
  *  scroll.js
+ *
+ *  User interuptable smooth scroll
+ *
  *  Ryan Needham
- * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * */
 (function () {
-    let arrow = document.getElementById("down")
-    var targetY = window.innerHeight*0.95
-    
-    arrow.addEventListener("click", function (e) {
-        
+    var scrollDown = function (e) {
+        var targetY = window.innerHeight * 1
+        var lastY = 0
         var scrollFrame = function ()  {
-            window.scrollBy(0,((window.innerHeight*1.2) - window.scrollY) * 0.1)
-            if (window.scrollY < targetY) 
-                requestAnimationFrame(scrollFrame)
+            if (!(window.scrollY < lastY)) {
+                lastY = window.scrollY
+                window.scrollBy(0,(targetY - window.scrollY) * 0.05)
+                if (window.scrollY < targetY)
+                    requestAnimationFrame(scrollFrame)   
+            }
         }
         requestAnimationFrame(scrollFrame)
-    })
+    }
+    
+    var scrollUp = function (e) {
+        
+    }
+    
+    document.getElementById("down").addEventListener("click", scrollDown)
 }())

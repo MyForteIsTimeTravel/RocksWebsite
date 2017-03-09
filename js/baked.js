@@ -88,40 +88,27 @@
     var step       = 0.25
     
     var simplex = new SimplexNoise();
-    
-    // Data
+
     for (var x = startX; x < width; x += step * 2, xIndex++) {
         for (var z = height; z > endZ; z -= step * 2, zIndex--) {
-            
-            // TRIANGLE 1 VERT 1
-            landscape.push(x - step)    // position x
+            landscape.push(x - step)                                          // position x
             landscape.push(0.0 + simplex.noise2D(x - step, z + step))         // position y
-            landscape.push(z + step)    // position z
-
-            // TRIANGLE 1 VERT 2
-            landscape.push(x - step)    // position x
+            landscape.push(z + step)                                          // position z
+            landscape.push(x - step)                                          // position x
             landscape.push(0.0 + simplex.noise2D(x - step, z - step))         // position y
-            landscape.push(z - step)    // position z
-            
-            // TRIANGLE 1 VERT 3
-            landscape.push(x + step)    // position x
+            landscape.push(z - step)                                          // position z
+            landscape.push(x + step)                                          // position x
             landscape.push(0.0 + simplex.noise2D(x + step, z + step))         // position y
-            landscape.push(z + step)    // position z
-            
-            // TRIANGLE 2 VERT 1
-            landscape.push(x + step)    // position x
+            landscape.push(z + step)                                          // position z
+            landscape.push(x + step)                                          // position x
             landscape.push(0.0 + simplex.noise2D(x + step, z + step))         // position y
-            landscape.push(z + step)    // position z
-            
-            // TRIANGLE 2 VERT 2
-            landscape.push(x - step)    // position x
+            landscape.push(z + step)                                          // position z
+            landscape.push(x - step)                                          // position x
             landscape.push(0.0 + simplex.noise2D(x - step, z - step))         // position y
-            landscape.push(z - step)    // position z
-            
-            // TRIANGLE 2 VERT 3
-            landscape.push(x + step)    // position x
+            landscape.push(z - step)                                          // position z
+            landscape.push(x + step)                                          // position x
             landscape.push(0.0 + simplex.noise2D(x + step, z - step))         // position y
-            landscape.push(z - step)    // position z
+            landscape.push(z - step)                                          // position z
         }
     }
 
@@ -216,16 +203,11 @@
          * animate mesh
          */
         gl.uniform1f(gl.getUniformLocation(Shader, 'amp'), amp)
-        if (animating && amp < ampMax) 
-            amp += (ampMax - amp) * 0.05; 
-        else if (amp > 0)
-            amp -= 0.01
+        if (animating && amp < ampMax) amp += (ampMax - amp) * 0.05; 
+        else if (amp > 0) amp -= 0.01
             
-        if (window.innerWidth < 760) {
-            automated = true;
-        } else {
-            automated = false;
-        }
+        if (window.innerWidth < 760) automated = true;
+        else automated = false;
         
         if (automated) {
             amp += 0.025
@@ -235,14 +217,9 @@
         /** 
          * render
          */
-        if (automated) {
-            gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
-        } else {
-            gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
-        }
-        
+        if (automated) gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
+        else gl.drawArrays(gl.LINES, 0, landscape.length / 3)   
         requestAnimationFrame(update)
     }
     requestAnimationFrame(update);   
-    
 }());

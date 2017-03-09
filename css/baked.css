@@ -117,11 +117,14 @@ footer {
 }
 
 #comingSoon {
-    background: rgba(91, 35, 51, 0.1);
+    background-image: url("../assets/backing.png");
     animation: Deemphasize 0.2s linear;
     position: absolute;
     display: block;
     bottom: 45%;
+        width: 20%;
+    margin-left: 40%;
+    margin-right: auto;
 }
 
 #comingSoon h2 {
@@ -303,4 +306,14 @@ footer {
     transform:          rotate(270deg);
     margin-left: 4%;
     margin-right: 4%;
+}
+
+/** PHONES */
+@media only screen and (max-width: 768px) {
+    #comingSoon {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        
+    }
 }
