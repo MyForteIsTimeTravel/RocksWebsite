@@ -25,7 +25,6 @@ h2 {
 
 h3 {
     font-family: 'Raleway', sans-serif;
-    color: #888888;
     padding: 1em;
 }
 
@@ -90,7 +89,7 @@ a {
 }
 
 footer {
-    font-size: 0.3em;
+    font-size: 0.8em;
     padding: 1em;
     position: static;
     bottom: 0;
@@ -98,7 +97,6 @@ footer {
     right: 0;
     text-align: center;
     background: rgba(40, 40, 40, 1.0);
-    height: 5%;
     margin: 0.2em;
     cursor: pointer;
 }
@@ -195,9 +193,25 @@ footer {
     .singlePageSection {
         align-content: center;
         background-color: rgb(32, 32, 32);
-        padding: 2em;
-        margin: 4em;
-        text-align: justify;
+        padding: 1em;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1em;
+        text-align: center;
+        align-content: center;
+        width: 768px;
+    }
+
+    article {
+        width: 440px;
+        text-align: center;
+        margin: 1em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    article p {
+        text-align: center;
     }
     
     #trailer {
@@ -266,26 +280,6 @@ footer {
 @keyframes arrow-hover   { 0% { color: #eee8d5; } 100% { color: #999999; } }
 @keyframes arrow-unhover { 0% { color: #999999; } 100% { color: #eee8d5; } }
 
-.button {
-    background-color: #212121;
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    animation: button-unhover 1s linear;
-}
-
-.button:hover {
-    cursor: pointer;
-    background-color: #161616;
-    animation: button-hover 1s linear;
-}
-
-@keyframes button-hover   { 0% { background-color: #212121; } 100% { background-color: #161616; } }
-@keyframes button-unhover { 0% { background-color: #161616; } 100% { background-color: #212121; } }
-
 /** FACEBOOK BUTTON */
 @keyframes facebook-in  { 0% { color: #3B5998; } 100% { color: #eee8d5; } }
 @keyframes facebook-out { 0% { color: #eee8d5; } 100% { color: #3B5998;} }
@@ -330,3 +324,13 @@ footer {
 
 @keyframes youtube-in  { 100% { color: #eee8d5; } 0% { color: #cd201f; } }
 @keyframes youtube-out { 100% { color: #cd201f; } 0% { color: #eee8d5; } }
+
+.appIcon {
+    width: 20%;
+    border-radius: 10%;
+    filter: brightness(75%);
+}
+
+.button:hover {
+    cursor: pointer;
+}
